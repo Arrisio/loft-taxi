@@ -1,11 +1,14 @@
 import React from "react";
 
 
+import IntroPage from "../intro-page";
+// import SignInFormSignInForm from "../sign-in-form";
+import MapPage from "../map-page";
+
 const App = () => {
     return (
-        <div>
-            <h1>INIT</h1>
-        </div>
+        // <IntroPage/>
+        <MapPage/>
     )
 };
 
