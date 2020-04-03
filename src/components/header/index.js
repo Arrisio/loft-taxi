@@ -1,5 +1,4 @@
 import React from 'react';
-// import Logo from '../../common/logo';
 
 import Logo from "../common/logo";
 import './header.css';
@@ -19,7 +18,7 @@ const Header = ( ) => {
                         <a
                             href={item.value}
                             className="header__link"
-                            // onClick={handlerMenu}
+                            onClick='#'
                         >
                             {item.name}
                         </a>

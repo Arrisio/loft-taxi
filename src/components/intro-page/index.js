@@ -13,7 +13,7 @@ const IntroPage = () => {
             <div className="intro-page">
                 <div className="intro-page--content"  >
                     <div className="logo-wrapper">
-                        <Logo logoClass="login_logo" txtRightClass="text_white"/>
+                        <Logo/>
                     </div>
                     <div className="intro-page--form-wrapper">
                         {/*<SignInForm/>*/}

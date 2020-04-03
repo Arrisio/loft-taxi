@@ -13,10 +13,6 @@
     color: rgb(50, 50, 50);
 }
 
-.text_white {
+.intro-page .logo__text_right {
     color: white;
-}
-
-.login_logo {
-    margin-right: 215px;
 }
