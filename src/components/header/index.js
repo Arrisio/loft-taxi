@@ -9,6 +9,7 @@ const Header = () => {
         {name: 'Профиль', value: 'profile', id: 2},
         {name: 'Выйти', value: 'login', id: 3}
     ];
+
     return (
         <header className="header">
             <Logo/>

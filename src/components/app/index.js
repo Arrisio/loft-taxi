@@ -10,9 +10,17 @@ export default class App extends Component {
     };
 
     signIn = () => {
-        this.setState(()=>{
+        this.setState(() => {
             return {
                 currentPage: 'map'
+            }
+        })
+    };
+
+    signOut = () => {
+        this.setState(() => {
+            return {
+                currentPage: 'intro'
             }
         })
     };
@@ -20,7 +28,9 @@ export default class App extends Component {
     render() {
         return (
             <>
-                {this.state.currentPage==='intro' ? <IntroPage signInHandler={this.signIn}/> : <MapPage/>}
+                {this.state.currentPage === 'intro' ?
+                    <IntroPage signInHandler={this.signIn}/> :
+                    <MapPage signOutHandler={this.signOut}/>}
             </>
         )
     };
