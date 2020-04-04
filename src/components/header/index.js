@@ -3,15 +3,15 @@ import React from 'react';
 import Logo from "../common/logo";
 import './header.css';
 
-const Header = ( ) => {
+const Header = () => {
     const headerMenu = [
-        { name: 'Карта', value: 'map', id: 1 },
-        { name: 'Профиль', value: 'profile', id: 2 },
-        { name: 'Выйти', value: 'login', id: 3 }
+        {name: 'Карта', value: 'map', id: 1},
+        {name: 'Профиль', value: 'profile', id: 2},
+        {name: 'Выйти', value: 'login', id: 3}
     ];
     return (
         <header className="header">
-            <Logo />
+            <Logo/>
             <ul className="header__list">
                 {headerMenu.map(item => (
                     <li key={item.id} className="header__item">

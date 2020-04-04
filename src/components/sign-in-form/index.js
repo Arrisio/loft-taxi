@@ -8,7 +8,7 @@ import InputText from "../common/input-text";
 const SignInForm = ({
                         goToSignUpHandler,
                         signInHandler
-                   }) => {
+                    }) => {
     return (
         <form className="sign_in_form" onSubmit={signInHandler}>
             <h1 className="sign_in__header">Войти</h1>

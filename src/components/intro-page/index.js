@@ -1,4 +1,4 @@
-import React , {Component} from 'react';
+import React, {Component} from 'react';
 
 import './intro-page.css'
 
@@ -7,20 +7,20 @@ import SignInForm from "../sign-in-form";
 import SignUpForm from "../sign-up-form";
 
 
-export default  class IntroPage extends Component {
+export default class IntroPage extends Component {
 
     state = {
         currentForm: "sign-in-form"
     };
 
-    gotoSignUp  = () => {
-        this.setState(()=>{
+    gotoSignUp = () => {
+        this.setState(() => {
             return {currentForm: 'sign-up-form'};
         });
     };
 
-    gotoSignIn  = () => {
-        this.setState(()=>{
+    gotoSignIn = () => {
+        this.setState(() => {
             return {currentForm: 'sign-in-form'};
         });
     };
@@ -35,8 +35,10 @@ export default  class IntroPage extends Component {
                     <div className="intro-page--form-wrapper">
                         {
                             this.state.currentForm === "sign-in-form" ?
-                                <SignInForm goToSignUpHandler={this.gotoSignUp} signInHandler={this.props.signInHandler}/> :
-                                <SignUpForm gotoSignInHandler={this.gotoSignIn}  signInHandler={this.props.signInHandler}/>
+                                <SignInForm goToSignUpHandler={this.gotoSignUp}
+                                            signInHandler={this.props.signInHandler}/> :
+                                <SignUpForm gotoSignInHandler={this.gotoSignIn}
+                                            signInHandler={this.props.signInHandler}/>
                         }
                     </div>
                 </div>
