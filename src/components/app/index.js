@@ -10,19 +10,11 @@ export default class App extends Component {
     };
 
     signIn = () => {
-        this.setState(() => {
-            return {
-                currentPage: 'map'
-            }
-        })
+        this.setState({currentPage: 'map'});
     };
 
     signOut = () => {
-        this.setState(() => {
-            return {
-                currentPage: 'intro'
-            }
-        })
+        this.setState({currentPage: 'intro'})
     };
 
     render() {

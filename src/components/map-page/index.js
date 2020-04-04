@@ -12,19 +12,11 @@ export default class MapPage extends Component {
     };
 
     gotoMap = () => {
-        this.setState(() => {
-            return {
-                currentContent: 'map'
-            }
-        })
+        this.setState({currentContent: 'map'})
     };
 
     gotoProfile = () => {
-        this.setState(() => {
-            return {
-                currentContent: 'profile'
-            }
-        })
+        this.setState({currentContent: 'profile'})
     };
 
     render() {
