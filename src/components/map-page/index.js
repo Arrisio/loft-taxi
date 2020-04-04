@@ -4,6 +4,7 @@ import './map-page.css';
 
 import Map from "../map";
 import Header from "../header";
+import Profile from "../profile";
 
 export default class MapPage extends Component {
     state = {
@@ -32,11 +33,16 @@ export default class MapPage extends Component {
             map: this.gotoMap,
             signout: this.props.signOutHandler
         };
-        console.log(gotoFunctionMapping);
+
+        const {currentContent} = this.state;
+
         return (
             <div>
                 <Header gotoFunctionMapping={gotoFunctionMapping}/>
-                <Map/>
+                {currentContent === 'map'
+                    ? <Map/>
+                    : <Profile/>
+                }
             </div>)
     };
 }
