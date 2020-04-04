@@ -43,6 +43,7 @@ export default class MapPage extends Component {
                     ? <Map/>
                     : <Profile/>
                 }
-            </div>)
+            </div>
+        )
     };
 }
