@@ -1,13 +1,27 @@
-import React from "react";
+import React, {Component} from "react";
 
 import IntroPage from "../intro-page";
 import MapPage from "../map-page";
 
-const App = () => {
-    return (
-        <IntroPage/>
-        // <MapPage/>
-    )
-};
+export default class App extends Component {
 
-export default App
+    state = {
+        currentPage: 'intro'
+    };
+
+    signIn = () => {
+        this.setState(()=>{
+            return {
+                currentPage: 'map'
+            }
+        })
+    };
+
+    render() {
+        return (
+            <>
+                {this.state.currentPage==='intro' ? <IntroPage signInHandler={this.signIn}/> : <MapPage/>}
+            </>
+        )
+    };
+}

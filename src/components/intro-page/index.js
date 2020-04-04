@@ -1,27 +1,39 @@
-import React from 'react';
+import React , {Component} from 'react';
 
 import './intro-page.css'
-import maker from "../../assets/img/marker.svg";
 
 import Logo from "../common/logo";
 import SignInForm from "../sign-in-form";
 import SignUpForm from "../sign-up-form";
 
 
-const IntroPage = () => {
-    return (
+export default  class IntroPage extends Component {
+
+    state = {
+        currentForm: "sign-in-form"
+    };
+
+    gotoSignUp  = () => {
+        console.log(this.state);
+        this.setState(()=>{
+            return {currentForm: 'sign-up-form'};
+        });
+    };
+
+    render() {
+        return (
             <div className="intro-page">
-                <div className="intro-page--content"  >
+                <div className="intro-page--content">
                     <div className="logo-wrapper">
                         <Logo/>
                     </div>
                     <div className="intro-page--form-wrapper">
-                        {/*<SignInForm/>*/}
-                        <SignUpForm/>
+                        {this.state.currentForm === "sign-in-form" ? <SignInForm goToSignUpHandler={this.gotoSignUp} signInHandler={this.props.signInHandler}/> :  <SignUpForm signInHandler={this.props.signInHandler}/>
+                        }
                     </div>
                 </div>
             </div>
         )
+    }
 };
 
-export default IntroPage

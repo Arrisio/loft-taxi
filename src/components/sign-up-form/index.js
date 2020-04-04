@@ -4,18 +4,16 @@ import './sign-up-form.css'
 
 import ButtonActive from "../common/button-active";
 import InputText from "../common/input-text";
-import SignInForm from "../sign-in-form";
 
-const SignupForm = ({ navigation, handlerSignup, handlerLoginLink }) => {
-    if (navigation === 'login') return <SignInForm />;
+const SignupForm = ({ signInHandler}) => {
     return (
-                <form className="sign_up_form" onSubmit={handlerSignup}>
+                <form className="sign_up_form" onSubmit={signInHandler}>
                     <h1 className="sign_up_form__header">Регистрация</h1>
                     <div className="sign_up_form__text">
                         <span className="sign_up_form__span">
                             Уже зарегистрирован?
                         </span>
-                        <a href="/login" onClick={handlerLoginLink}>
+                        <a href="#" onClick={signInHandler}>
                             Войти
                         </a>
                     </div>

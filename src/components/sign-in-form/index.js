@@ -6,20 +6,18 @@ import ButtonActive from "../common/button-active";
 import InputText from "../common/input-text";
 
 const SignInForm = ({
-                       navigation,
-                       handlerLogin,
-                       handlerSignup,
-                       handlerLoginLink,
-                       handlerSignupLink
+                        goToSignUpHandler,
+                        signInHandler
                    }) => {
     return (
-        <form className="sign_in_form" onSubmit={handlerLogin}>
+        <form className="sign_in_form" onSubmit={signInHandler}>
             <h1 className="sign_in__header">Войти</h1>
             <div className="sign_in_form__text">
                         <span className="login_form__span">
                             Новый пользователь?
                         </span>
-                <a href="/signup" onClick={handlerSignupLink}>
+
+                <a href="#" onClick={goToSignUpHandler}>
                     Зарегистрируйтесь
                 </a>
             </div>
