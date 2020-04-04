@@ -27,10 +27,15 @@ export default class MapPage extends Component {
     };
 
     render() {
-
-        return(
+        const gotoFunctionMapping = {
+            profile: this.gotoProfile,
+            map: this.gotoMap,
+            signout: this.props.signOutHandler
+        };
+        console.log(gotoFunctionMapping);
+        return (
             <div>
-                <Header/>
+                <Header gotoFunctionMapping={gotoFunctionMapping}/>
                 <Map/>
             </div>)
     };
