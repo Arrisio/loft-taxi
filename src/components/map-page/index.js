@@ -8,7 +8,7 @@ import Header from "../header";
 const MapPage = () => (
     <div>
         <Header/>
-        <div><Map/></div>
+        <Map/>
     </div>
 );
 
