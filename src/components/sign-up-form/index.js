@@ -5,7 +5,7 @@ import './sign-up-form.css'
 import ButtonActive from "../common/button-active";
 import InputText from "../common/input-text";
 
-const SignupForm = ({ signInHandler}) => {
+const SignupForm = ({gotoSignInHandler, signInHandler}) => {
     return (
                 <form className="sign_up_form" onSubmit={signInHandler}>
                     <h1 className="sign_up_form__header">Регистрация</h1>
@@ -13,7 +13,7 @@ const SignupForm = ({ signInHandler}) => {
                         <span className="sign_up_form__span">
                             Уже зарегистрирован?
                         </span>
-                        <a href="#" onClick={signInHandler}>
+                        <a href="#" onClick={gotoSignInHandler}>
                             Войти
                         </a>
                     </div>

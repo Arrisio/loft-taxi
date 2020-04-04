@@ -14,9 +14,14 @@ export default  class IntroPage extends Component {
     };
 
     gotoSignUp  = () => {
-        console.log(this.state);
         this.setState(()=>{
             return {currentForm: 'sign-up-form'};
+        });
+    };
+
+    gotoSignIn  = () => {
+        this.setState(()=>{
+            return {currentForm: 'sign-in-form'};
         });
     };
 
@@ -28,7 +33,10 @@ export default  class IntroPage extends Component {
                         <Logo/>
                     </div>
                     <div className="intro-page--form-wrapper">
-                        {this.state.currentForm === "sign-in-form" ? <SignInForm goToSignUpHandler={this.gotoSignUp} signInHandler={this.props.signInHandler}/> :  <SignUpForm signInHandler={this.props.signInHandler}/>
+                        {
+                            this.state.currentForm === "sign-in-form" ?
+                                <SignInForm goToSignUpHandler={this.gotoSignUp} signInHandler={this.props.signInHandler}/> :
+                                <SignUpForm gotoSignInHandler={this.gotoSignIn}  signInHandler={this.props.signInHandler}/>
                         }
                     </div>
                 </div>
