@@ -5,9 +5,9 @@ import './header.css';
 
 const Header = ({gotoFunctionMapping}) => {
     const headerMenu = [
-        {name: 'Карта', value: 'map', id: 1},
-        {name: 'Профиль', value: 'profile', id: 2},
-        {name: 'Выйти', value: 'signout', id: 3}
+        {name: 'Карта', id: 'map'},
+        {name: 'Профиль', id: 'profile'},
+        {name: 'Выйти', id: 'signout'}
     ];
 
     return (
@@ -17,9 +17,8 @@ const Header = ({gotoFunctionMapping}) => {
                 {headerMenu.map(item => (
                     <li key={item.id} className="header__item">
                         <button
-                            // href='#'
                             className="header__link"
-                            onClick={gotoFunctionMapping[item.value]}
+                            onClick={gotoFunctionMapping[item.id]}
                         >
                             {item.name}
                         </button>
