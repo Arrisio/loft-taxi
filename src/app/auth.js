@@ -12,8 +12,6 @@ const Auth = props => {
         setUsername(username);
         setPassword(password);
         setSignedin(true);
-        console.log(username)
-        // console.log(e)
     };
 
     const signOut = () => {
