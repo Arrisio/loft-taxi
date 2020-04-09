@@ -14,7 +14,6 @@ import IntroPageFormCtx from "../intro-page-ctx";
 import {AuthCtx} from "../../../app/auth";
 
 
-
 const styles = () => ({
     paper: {
         padding: '60px 55px',

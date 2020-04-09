@@ -5,14 +5,20 @@ const AuthCtx = createContext();
 
 const Auth = props => {
     const [isSignedIn, setSignedin] = useState(false);
+    const [username, setUsername] = useState(null);
+    const [password, setPassword] = useState(null);
 
-    const signIn = e => {
-        e.preventDefault();
+    const signIn = (username, password) => {
+        setUsername(username);
+        setPassword(password);
         setSignedin(true);
+        console.log(username)
+        // console.log(e)
     };
 
     const signOut = e => {
-        e.preventDefault();
+        setUsername(null);
+        setPassword(null);
         setSignedin(false);
     };
 
