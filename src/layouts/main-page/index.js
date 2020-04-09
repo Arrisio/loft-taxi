@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
-import './map-page.css';
+import './main-page.css';
 
-import Map from "../map";
-import Header from "../header";
-import Profile from "../profile";
+import Map from "./map";
+import Header from "./header";
+import Profile from "./profile";
 
 export default class MapPage extends Component {
     state = {

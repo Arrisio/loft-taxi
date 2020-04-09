@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 
-import IntroPage from "../intro-page";
-import MapPage from "../map-page";
+import IntroPage from "../layouts/intro-page";
+import MapPage from "../layouts/main-page";
 
 export default class App extends Component {
 

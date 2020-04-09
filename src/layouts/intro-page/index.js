@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 import './intro-page.css'
 
 import Logo from "../common/logo";
-import SignInForm from "../sign-in-form";
-import SignUpForm from "../sign-up-form";
+import SignInForm from "./sign-in-form";
+import SignUpForm from "./sign-up-form";
 
 
 export default class IntroPage extends Component {

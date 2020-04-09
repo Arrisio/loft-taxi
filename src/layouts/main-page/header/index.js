@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Logo from "../common/logo";
+import Logo from "../../../components/common/logo";
 import './header.css';
 
 const Header = ({gotoFunctionMapping}) => {
