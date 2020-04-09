@@ -1,29 +1,12 @@
-import React, {Component} from "react";
+import React from "react";
 
-import IntroPage from "../layouts/intro-page";
-import MapPage from "../layouts/main-page";
+import MainPage from "../layouts/main-page";
+import {Auth} from "./auth";
 
-export default class App extends Component {
+const App = () => (
+        <Auth>
+            <MainPage/>}
+        </Auth>
+    );
 
-    state = {
-        currentPage: 'intro'
-    };
-
-    signIn = () => {
-        this.setState({currentPage: 'map'});
-    };
-
-    signOut = () => {
-        this.setState({currentPage: 'intro'})
-    };
-
-    render() {
-        return (
-            <>
-                {this.state.currentPage === 'intro' ?
-                    <IntroPage signInHandler={this.signIn}/> :
-                    <MapPage signOutHandler={this.signOut}/>}
-            </>
-        )
-    };
-}
+export default App;

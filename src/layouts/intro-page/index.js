@@ -1,48 +1,51 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
+import {Grid, Paper} from '@material-ui/core';
 
-import './intro-page.css'
-
-import Logo from "../common/logo";
+import {Logo} from 'loft-taxi-mui-theme';
 import SignInForm from "./sign-in-form";
-import SignUpForm from "./sign-up-form";
+import SignupForm from "./sign-up-form";
 
+import IntroPageFormCtx from "./intro-page-ctx";
+import initStyles from './styles';
 
-export default class IntroPage extends Component {
+const IntroPage = () => {
+    const styles = initStyles();
 
-    state = {
-        currentForm: "sign-in-form"
+    const [currentForm, setCurrentForm] = useState("sign-in-form");
+    const gotoSignUp = e => {
+        e.preventDefault();
+        setCurrentForm('sign-up-form');
+    };
+    const gotoSignIn = e => {
+        e.preventDefault();
+        setCurrentForm('sign-in-form');
     };
 
-    gotoSignUp = () => {
-        this.setState({currentForm: 'sign-up-form'});
-    };
+    return (
 
-    gotoSignIn = () => {
-        this.setState({currentForm: 'sign-in-form'})
-    };
-
-    render() {
-        const {signInHandler} = this.props;
-        const {currentForm} = this.state;
-
-        return (
-            <div className="intro-page">
-                <div className="intro-page--content">
-                    <div className="logo-wrapper">
-                        <Logo/>
-                    </div>
-                    <div className="intro-page--form-wrapper">
-                        {
-                            currentForm === "sign-in-form"
-                                ? <SignInForm goToSignUpHandler={this.gotoSignUp}
-                                              signInHandler={signInHandler}/>
-                                : <SignUpForm gotoSignInHandler={this.gotoSignIn}
-                                              signInHandler={signInHandler}/>
-                        }
-                    </div>
-                </div>
-            </div>
-        )
-    }
+        <Paper className={styles.introPage}>
+            <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+                style={{minHeight: '100vh'}}
+            >
+                <Logo
+                    white={true}
+                    animated={true}
+                    classes={{logo: styles.logo}}
+                />
+                <IntroPageFormCtx.Provider value={{handlerGotoSignUp: gotoSignUp, handlerGotoSignIn: gotoSignIn}}>
+                    {
+                        currentForm === "sign-in-form"
+                            ? <SignInForm/>
+                            : <SignupForm/>
+                    }
+                </IntroPageFormCtx.Provider>
+            </Grid>
+        </Paper>
+    )
 };
 
+export default IntroPage;

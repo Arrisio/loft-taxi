@@ -1,43 +1,94 @@
-import React from "react";
+import React, {useContext} from 'react';
+import {
+    Grid,
+    FormControl,
+    InputLabel,
+    Input,
+    Button,
+    Typography,
+    Link,
+    Paper,
+} from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
 
-import './sign-in-form.css'
-
-import ButtonActive from "../common/button-active";
-import InputText from "../common/input-text";
-
-const SignInForm = ({
-                        goToSignUpHandler,
-                        signInHandler
-                    }) => (
-    <form className="sign_in_form" onSubmit={signInHandler}>
-        <h1 className="sign_in__header">Войти</h1>
-        <div className="sign_in_form__text">
-                        <span className="login_form__span">
-                            Новый пользователь?
-                        </span>
-
-            <a href="#" onClick={goToSignUpHandler}>
-                Зарегистрируйтесь
-            </a>
-        </div>
-        <InputText
-            inputClass="sign_in_form__user"
-            type="text"
-            name="username"
-            placeholder="Имя пользователя*"
-        />
-        <InputText
-            inputClass="sign_in_form__password"
-            type="password"
-            name="password"
-            placeholder="Пароль*"
-        />
-        <ButtonActive
-            buttonClass="sign_in_form__submit"
-            text="Войти"
-        />
-    </form>
-);
+import IntroPageFormCtx from "../intro-page-ctx";
+import {AuthCtx} from "../../../app/auth";
 
 
-export default SignInForm
+const styles = () => ({
+    paper: {
+        padding: '60px 55px',
+    },
+    input: {
+        marginBottom: '30px',
+    },
+});
+
+const SignInForm = ({classes}) => {
+    const {handlerGotoSignUp} = useContext(IntroPageFormCtx);
+    const {signInHandler} = useContext(AuthCtx);
+
+    return (
+        <Paper className={classes.paper}>
+            <form onSubmit={signInHandler}>
+                <Grid container direction="column">
+                    <Typography
+                        component="h1"
+                        variant="h4"
+                        align="left"
+                        gutterBottom
+                    >
+                        Войти
+                    </Typography>
+                    <Typography align="left">
+                        Новый пользователь?{' '}
+                        <Link
+                            align="left"
+                            underline="none"
+                            href="/signup"
+                            onClick={handlerGotoSignUp}
+                        >
+                            Зарегистрируйтесь
+                        </Link>
+                    </Typography>
+                    <FormControl required>
+                        <InputLabel htmlFor="username">
+                            Имя пользователя
+                        </InputLabel>
+                        <Input
+                            className={classes.input}
+                            id="username"
+                            name="username"
+                            type="text"
+                            placeholder="Имя пользователя"
+                            required
+                        />
+                    </FormControl>
+                    <FormControl required>
+                        <InputLabel htmlFor="password">Пароль</InputLabel>
+                        <Input
+                            className={classes.input}
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="Пароль"
+                            required
+                        />
+                    </FormControl>
+                    <Grid align="right">
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            elevation={0}
+                            type="submit"
+                        >
+                            Войти
+                        </Button>
+                    </Grid>
+                </Grid>
+            </form>
+        </Paper>
+    );
+};
+
+export default withStyles(styles)(SignInForm);

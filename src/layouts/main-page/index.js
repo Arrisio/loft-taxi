@@ -1,41 +1,29 @@
-import React, {Component} from 'react';
+import React, { useState } from 'react';
 
-import './main-page.css';
-
-import Map from "./map";
 import Header from "./header";
+import Map from "./map";
 import Profile from "./profile";
 
-export default class MapPage extends Component {
-    state = {
-        currentContent: 'map'
+const MainPage = () => {
+    const [curentPage, setCurentpage] = useState('map');
+    const showMap = e => {
+        e.preventDefault();
+        setCurentpage('map');
+    };
+    const showProfile = e => {
+        e.preventDefault();
+        setCurentpage('profile');
     };
 
-    gotoMap = () => {
-        this.setState({currentContent: 'map'})
-    };
+    return (
+        <>
+            <Header showMapHandler={showMap} showProfileHandler={showProfile} />
+            {(curentPage === 'map')
+                ?<Map/>
+                :<Profile/>
+            }
+        </>
+    );
+};
 
-    gotoProfile = () => {
-        this.setState({currentContent: 'profile'})
-    };
-
-    render() {
-        const gotoFunctionMapping = {
-            profile: this.gotoProfile,
-            map: this.gotoMap,
-            signout: this.props.signOutHandler
-        };
-
-        const {currentContent} = this.state;
-
-        return (
-            <div>
-                <Header gotoFunctionMapping={gotoFunctionMapping}/>
-                {currentContent === 'map'
-                    ? <Map/>
-                    : <Profile/>
-                }
-            </div>
-        )
-    };
-}
+export default MainPage;

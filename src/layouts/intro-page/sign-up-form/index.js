@@ -1,52 +1,120 @@
-import React from "react";
+import React, {useContext} from 'react';
+import {
+    Grid,
+    FormControl,
+    InputLabel,
+    Input,
+    Button,
+    Typography,
+    Link,
+    Paper,
+} from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
+import IntroPageFormCtx from "../intro-page-ctx";
+import {AuthCtx} from "../../../app/auth";
 
-import './sign-up-form.css'
 
-import ButtonActive from "../common/button-active";
-import InputText from "../common/input-text";
 
-const SignupForm = ({gotoSignInHandler, signInHandler}) => (
-    <form className="sign_up_form" onSubmit={signInHandler}>
-        <h1 className="sign_up_form__header">Регистрация</h1>
-        <div className="sign_up_form__text">
-                        <span className="sign_up_form__span">
-                            Уже зарегистрирован?
-                        </span>
-            <a href="#" onClick={gotoSignInHandler}>
-                Войти
-            </a>
-        </div>
-        <InputText
-            inputClass="sign_up_form__email"
-            type="email"
-            name="email"
-            placeholder="Адрес электронной почты*"
-        />
-        <div className="sign_up_form__fullname">
-            <InputText
-                inputClass="sign_up_form__firstname"
-                type="text"
-                name="firstname"
-                placeholder="Имя*"
-            />
-            <InputText
-                inputClass="sign_up_form__lastname"
-                type="text"
-                name="lastname"
-                placeholder="Фамилия*"
-            />
-        </div>
-        <InputText
-            inputClass="sign_up_form__password"
-            type="password"
-            name="password"
-            placeholder="Пароль*"
-        />
-        <ButtonActive
-            buttonClass="sign_up_form__submit"
-            text="Войти"
-        />
-    </form>
-);
+const styles = () => ({
+    paper: {
+        padding: '60px 55px',
+    },
+    input: {
+        marginBottom: '30px',
+        marginRight: '10px',
+    },
+});
+const SignUpForm = ({ classes }) => {
+    const {handlerGotoSignIn} = useContext(IntroPageFormCtx);
+    const {signInHandler} = useContext(AuthCtx);
 
-export default SignupForm;
+    return (
+        <Paper className={classes.paper}>
+            <form onSubmit={signInHandler}>
+                <Grid container direction="column">
+                    <Typography
+                        component="h1"
+                        variant="h4"
+                        align="left"
+                        gutterBottom
+                    >
+                        Регистрация
+                    </Typography>
+                    <Typography align="left">
+                        Уже зарегистрирован?{' '}
+                        <Link
+                            align="left"
+                            underline="none"
+                            href="/signin"
+                            onClick={handlerGotoSignIn}
+                        >
+                            Войти
+                        </Link>
+                    </Typography>
+                    <FormControl required>
+                        <InputLabel htmlFor="email">
+                            Адрес электронной почты
+                        </InputLabel>
+                        <Input
+                            className={classes.input}
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="Адрес электронной почты"
+                            required
+                        />
+                    </FormControl>
+                    <Grid>
+                        <FormControl required>
+                            <InputLabel htmlFor="firstname">Имя</InputLabel>
+                            <Input
+                                className={classes.input}
+                                id="firstname"
+                                name="firstname"
+                                type="text"
+                                placeholder="Имя"
+                                required
+                            />
+                        </FormControl>
+                        <FormControl required>
+                            <InputLabel htmlFor="lastname">Фамилия</InputLabel>
+                            <Input
+                                className={classes.input}
+                                id="lastname"
+                                name="lastname"
+                                type="text"
+                                placeholder="Фамилия"
+                                required
+                            />
+                        </FormControl>
+                    </Grid>
+                    <FormControl required>
+                        <InputLabel htmlFor="signup_password">
+                            Пароль
+                        </InputLabel>
+                        <Input
+                            className={classes.input}
+                            id="signup_password"
+                            name="signup_password"
+                            type="password"
+                            placeholder="Пароль"
+                            required
+                        />
+                    </FormControl>
+                    <Grid align="right">
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            elevation={0}
+                            type="submit"
+                        >
+                            Зарегистрироваться
+                        </Button>
+                    </Grid>
+                </Grid>
+            </form>
+        </Paper>
+    );
+};
+
+export default withStyles(styles)(SignUpForm);

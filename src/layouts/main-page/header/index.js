@@ -1,32 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppBar, Toolbar, Button, Container } from '@material-ui/core';
+import { Logo } from 'loft-taxi-mui-theme';
+import withStyles from '@material-ui/core/styles/withStyles';
 
-import Logo from "../../../components/common/logo";
-import './header.css';
+import {AuthCtx} from "../../../app/auth";
 
-const Header = ({gotoFunctionMapping}) => {
-    const headerMenu = [
-        {name: 'Карта', id: 'map'},
-        {name: 'Профиль', id: 'profile'},
-        {name: 'Выйти', id: 'signout'}
-    ];
+
+const styles = () => ({
+    appBar: {
+        backgroundColor: 'white',
+    },
+    logo: {
+        flexGrow: 1,
+    },
+});
+
+const Header = ({showProfileHandler, showMapHandler, classes }) => {
+    const {signOutHandler} = useContext(AuthCtx);
 
     return (
-        <header className="header">
-            <Logo/>
-            <ul className="header__list">
-                {headerMenu.map(item => (
-                    <li key={item.id} className="header__item">
-                        <button
-                            className="header__link"
-                            onClick={gotoFunctionMapping[item.id]}
-                        >
-                            {item.name}
-                        </button>
-                    </li>
-                ))}
-            </ul>
-        </header>
+        <AppBar position="static" className={classes.appBar}>
+            <Toolbar>
+                <Container className={classes.logo}>
+                    <Logo />
+                </Container>
+                <Button onClick={showMapHandler}>Карта</Button>
+                <Button onClick={showProfileHandler}>Профиль</Button>
+                <Button onClick={signOutHandler}>Выйти</Button>
+            </Toolbar>
+        </AppBar>
     );
 };
 
-export default Header;
+export default withStyles(styles)(Header);
