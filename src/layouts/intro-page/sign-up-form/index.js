@@ -27,9 +27,11 @@ const SignUpForm = ({ classes }) => {
     const {handlerGotoSignIn} = useContext(IntroPageFormCtx);
     const {signInHandler} = useContext(AuthCtx);
 
+    const signIn = e => {signInHandler(e.target.username.value, e.target.password.value);};
+
     return (
         <Paper className={classes.paper}>
-            <form onSubmit={signInHandler}>
+            <form onSubmit={signIn}>
                 <Grid container direction="column">
                     <Typography
                         component="h1"
