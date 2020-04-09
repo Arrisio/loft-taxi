@@ -1,6 +1,6 @@
 import React, {createContext, useState} from 'react';
-import IntroPage from "../layouts/intro-page";
 
+import IntroPage from "../layouts/intro-page";
 const AuthCtx = createContext();
 
 const Auth = props => {
@@ -16,7 +16,7 @@ const Auth = props => {
         // console.log(e)
     };
 
-    const signOut = e => {
+    const signOut = () => {
         setUsername(null);
         setPassword(null);
         setSignedin(false);

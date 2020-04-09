@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+
 import { AppBar, Toolbar, Button, Container } from '@material-ui/core';
 import { Logo } from 'loft-taxi-mui-theme';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -30,6 +32,12 @@ const Header = ({showProfileHandler, showMapHandler, classes }) => {
             </Toolbar>
         </AppBar>
     );
+};
+
+Header.propTypes = {
+    showProfileHandler: PropTypes.func,
+    showMapHandler: PropTypes.func,
+    classes: PropTypes.object
 };
 
 export default withStyles(styles)(Header);
