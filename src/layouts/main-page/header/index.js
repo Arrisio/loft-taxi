@@ -6,6 +6,7 @@ import { Logo } from 'loft-taxi-mui-theme';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import {AuthCtx} from "../../../app/auth";
+// import {warnOnce} from "mapbox-gl/src/util/util";
 
 
 const styles = () => ({
@@ -26,9 +27,9 @@ const Header = ({showProfileHandler, showMapHandler, classes }) => {
                 <Container className={classes.logo}>
                     <Logo />
                 </Container>
-                <Button onClick={showMapHandler}>Карта</Button>
-                <Button onClick={showProfileHandler}>Профиль</Button>
-                <Button onClick={signOutHandler}>Выйти</Button>
+                <Button data-testid="btnGotoMap" onClick={showMapHandler}>Карта</Button>
+                <Button data-testid="btnGotoProfile" onClick={showProfileHandler}>Профиль</Button>
+                <Button data-testid="btnSignOut" onClick={signOutHandler}>Выйти</Button>
             </Toolbar>
         </AppBar>
     );

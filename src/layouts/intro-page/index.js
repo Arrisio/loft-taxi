@@ -23,7 +23,7 @@ const IntroPage = () => {
 
     return (
 
-        <Paper className={styles.introPage}>
+        <Paper className={styles.introPage}  data-testid="introPage">
             <Grid
                 container
                 direction="row"

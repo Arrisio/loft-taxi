@@ -31,7 +31,7 @@ const SignInForm = ({classes}) => {
 
     return (
         <Paper className={classes.paper}>
-            <form onSubmit={e => signInHandler(e.target.username.value, e.target.password.value)}>
+            <form onSubmit={e => signInHandler(e.target.username.value, e.target.password.value)} data-testid="formSignIn">
                 <Grid container direction="column">
                     <Typography
                         component="h1"
@@ -48,6 +48,7 @@ const SignInForm = ({classes}) => {
                             underline="none"
                             href="/signup"
                             onClick={handlerGotoSignUp}
+                            data-testid="linkGotoSignUp"
                         >
                             Зарегистрируйтесь
                         </Link>
@@ -78,6 +79,7 @@ const SignInForm = ({classes}) => {
                     </FormControl>
                     <Grid align="right">
                         <Button
+                            data-testid="btnsignin"
                             variant="contained"
                             color="primary"
                             elevation={0}
