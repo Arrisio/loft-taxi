@@ -36,19 +36,16 @@ describe("Ent2end тестирование", () => {
     })
     it("Логинимся", () => {
         const {getByTestId, queryByTestId, getAllByText} = render(<App/>);
-        const btn = getByTestId('btnsignin');
-        console.log(btn)
-        fireEvent.click(btn);
-        // fireEvent(
-        //     queryByText("Войти", {selector: 'submit'}),
-        //     new MouseEvent('click', {
-        //         bubbles: true,
-        //         cancelable: true,
-        //     })
-        // )
-        // console.log(btn)
-        // fireEvent.click(btn);
-        // fireEvent.click(getByText("Войти", {selector: 'button'}));
+
+        fireEvent.change(getByTestId("inputLoginName"), {
+            target: {value: "email@example.com"}
+        });
+        // console.log(getByTestId("inputLoginName"))
+		fireEvent.change(getByTestId("inputPassword"), {
+            target: {value: "password"}
+        });
+
+        fireEvent.click(getByTestId('btnsignin'));
         expect(queryByTestId("introPage")).toBeFalsy();
         expect(getByTestId("mainPage")).toBeTruthy();
     })

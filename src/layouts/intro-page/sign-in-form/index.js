@@ -5,6 +5,7 @@ import {
     FormControl,
     InputLabel,
     Input,
+    TextField,
     Button,
     Typography,
     Link,
@@ -64,6 +65,9 @@ const SignInForm = ({classes}) => {
                             type="text"
                             placeholder="Имя пользователя"
                             required
+                            // data-testid="inputLoginName"
+                            inputProps={{ "data-testid": "inputLoginName" }}
+                            // value="test"
                         />
                     </FormControl>
                     <FormControl required>
@@ -75,6 +79,9 @@ const SignInForm = ({classes}) => {
                             type="password"
                             placeholder="Пароль"
                             required
+                            // data-testid="inputPassword"
+                            inputProps={{ "data-testid": "inputPassword" }}
+                            // value="test"
                         />
                     </FormControl>
                     <Grid align="right">
