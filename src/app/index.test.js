@@ -1,14 +1,9 @@
 import React, {createContext} from "react";
 import App from "./index";
-// import AuthCtx from '/app/auth';
-// import AuthCtx from "../../app/auth"
 import {render, screen, fireEvent} from "@testing-library/react";
 
-// const signOutHandler = jest.fn();
 
-
-describe("Ent2end тестирование", () => {
-    // const {getByTestId, queryByTestId, getByText} = render(<App/>);
+describe("Ent2end", () => {
 
     it("Инициализирована страница входа", () => {
         const {getByTestId, queryByTestId, getByText} = render(<App/>);
@@ -17,7 +12,6 @@ describe("Ent2end тестирование", () => {
         expect(getByTestId("formSignIn")).toBeTruthy();
         expect(queryByTestId("formSignUp")).toBeFalsy();
     })
-
 
     it("Переход на страницу регистрации", () => {
         const {getByTestId, queryByTestId, getByText} = render(<App/>);
@@ -34,26 +28,19 @@ describe("Ent2end тестирование", () => {
         expect(getByTestId("formSignIn")).toBeTruthy();
         expect(queryByTestId("formSignUp")).toBeFalsy();
     })
+
     it("Логинимся", () => {
         const {getByTestId, queryByTestId, getAllByText} = render(<App/>);
-
-        fireEvent.submit(getByTestId('formSignIn'), { target: { username: 'a', password: '33' } });
-
+        fireEvent.submit(getByTestId('formSignIn'), {target: {username: 'a', password: '33'}});
         expect(queryByTestId("introPage")).toBeFalsy();
         expect(getByTestId("mainPage")).toBeTruthy();
     })
-    it("Отображаем карту", () => {
-        const {getByTestId, queryByTestId, getAllByText} = render(<App/>);
-        fireEvent.click(getByTestId("btnGotoMap"));
-        expect(getByTestId("map")).toBeTruthy();
-    })
-    it("Отображаем профиль", () => {
-        fireEvent.click(getByTestId("btnGotoProfile"));
-        expect(getByTestId("profile")).toBeTruthy();
-    })
+
     it("вылогиниваемся", () => {
+        const {getByTestId, queryByTestId, getAllByText} = render(<App/>);
+        fireEvent.submit(getByTestId('formSignIn'), {target: {username: 'a', password: '33'}});
         fireEvent.click(getByTestId("btnSignOut"));
-        expect(queryByTestId("mainPage")).toBeFalsy();
         expect(queryByTestId("introPage")).toBeTruthy();
+        expect(queryByTestId("mainPage")).toBeFalsy();
     })
 });

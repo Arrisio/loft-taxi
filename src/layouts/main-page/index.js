@@ -16,13 +16,13 @@ const MainPage = () => {
     };
 
     return (
-        <>
+        <div data-testid = 'mainPage'>
             <Header showMapHandler={showMap} showProfileHandler={showProfile} />
             {(curentPage === 'map')
                 ?<Map/>
                 :<Profile/>
             }
-        </>
+        </div>
     );
 };
 

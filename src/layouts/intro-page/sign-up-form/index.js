@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 
 import {
     Grid,
@@ -24,13 +24,16 @@ const styles = () => ({
         marginRight: '10px',
     },
 });
-const SignUpForm = ({ classes }) => {
+const SignUpForm = ({classes}) => {
     const {handlerGotoSignIn} = useContext(IntroPageFormCtx);
     const {signInHandler} = useContext(AuthCtx);
 
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
         <Paper className={classes.paper}>
-            <form onSubmit={e => signInHandler(e.target.username.value, e.target.password.value)}  data-testid="formSignUp">
+            <form onSubmit={() => signInHandler(username, password)} data-testid="formSignUp">
                 <Grid container direction="column">
                     <Typography
                         component="h1"
@@ -63,6 +66,8 @@ const SignUpForm = ({ classes }) => {
                             type="email"
                             placeholder="Адрес электронной почты"
                             required
+                            value={username}
+                            onChange={e => setUsername(e.target.value)}
                         />
                     </FormControl>
                     <Grid>
@@ -100,6 +105,8 @@ const SignUpForm = ({ classes }) => {
                             type="password"
                             placeholder="Пароль"
                             required
+                            onChange={e => setPassword(e.target.value)}
+                            value={password}
                         />
                     </FormControl>
                     <Grid align="right">

@@ -1,11 +1,10 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 
 import {
     Grid,
     FormControl,
     InputLabel,
     Input,
-    TextField,
     Button,
     Typography,
     Link,
@@ -30,9 +29,12 @@ const SignInForm = ({classes}) => {
     const {handlerGotoSignUp} = useContext(IntroPageFormCtx);
     const {signInHandler} = useContext(AuthCtx);
 
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
         <Paper className={classes.paper}>
-            <form onSubmit={e => signInHandler(e.target.username.value, e.target.password.value)} data-testid="formSignIn">
+            <form onSubmit={() => signInHandler(username, password)} data-testid="formSignIn">
                 <Grid container direction="column">
                     <Typography
                         component="h1"
@@ -65,9 +67,9 @@ const SignInForm = ({classes}) => {
                             type="text"
                             placeholder="Имя пользователя"
                             required
-                            // data-testid="inputLoginName"
                             inputProps={{ "data-testid": "inputLoginName" }}
-                            // value="test"
+                            value= {username}
+                            onChange={ e => setUsername(e.target.value)}
                         />
                     </FormControl>
                     <FormControl required>
@@ -79,9 +81,9 @@ const SignInForm = ({classes}) => {
                             type="password"
                             placeholder="Пароль"
                             required
-                            // data-testid="inputPassword"
                             inputProps={{ "data-testid": "inputPassword" }}
-                            // value="test"
+                            onChange={e => setPassword(e.target.value)}
+                            value={password}
                         />
                     </FormControl>
                     <Grid align="right">
