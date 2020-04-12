@@ -3,8 +3,9 @@ import {Auth, AuthCtx} from "./auth";
 // import AuthCtx from '/app/auth';
 // import AuthCtx from "../../app/auth"
 import {render, screen, fireEvent} from "@testing-library/react";
-import App from "./index";
-import loadGeometry from "mapbox-gl/src/data/load_geometry";
+import { renderHook, act } from '@testing-library/react-hooks';
+// import App from "./index";
+// import loadGeometry from "mapbox-gl/src/data/load_geometry";
 
 
 describe("аутентификация", () => {
@@ -13,7 +14,13 @@ describe("аутентификация", () => {
             <div data-testId="page-behing-auth"></div>
         </Auth>
     )
-    // const {signInHandler, signOutHandler} = useContext(AuthCtx);
+    const {signInHandler, signOutHandler} = renderHook(() => {
+        const {...ctx}  = useContext(AuthCtx);
+        console.log(ctx);
+        return ctx
+});
+    // const ctx =
+
 
     it("проверяем, что отриловалась страница входа, и нет страницы приложения", () => {
         const {getByTestId, queryByTestId, getByText} = render(tree);
@@ -22,11 +29,12 @@ describe("аутентификация", () => {
     })
     it("вход", () => {
         const {getByTestId, queryByTestId, getByText} = render(tree);
-        (AuthCtx.Provider)
-        // signInHandler();
-        expect(queryByTestId("page-behing-auth")).toBeFalsy();
-        expect(getByTestId("introPage")).toBeTruthy();
+        console.log(signInHandler)
+        signInHandler('userLogin', 'passwd');
+
     })
+
+
 })
 
 

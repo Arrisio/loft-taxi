@@ -37,15 +37,8 @@ describe("Ent2end тестирование", () => {
     it("Логинимся", () => {
         const {getByTestId, queryByTestId, getAllByText} = render(<App/>);
 
-        fireEvent.change(getByTestId("inputLoginName"), {
-            target: {value: "email@example.com"}
-        });
-        // console.log(getByTestId("inputLoginName"))
-		fireEvent.change(getByTestId("inputPassword"), {
-            target: {value: "password"}
-        });
+        fireEvent.submit(getByTestId('formSignIn'), { target: { username: 'a', password: '33' } });
 
-        fireEvent.click(getByTestId('btnsignin'));
         expect(queryByTestId("introPage")).toBeFalsy();
         expect(getByTestId("mainPage")).toBeTruthy();
     })
