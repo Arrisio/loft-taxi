@@ -12,7 +12,6 @@ import {
 } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import IntroPageFormCtx from "../intro-page-ctx";
 import {AuthCtx} from "../../../app/auth";
 
 
@@ -25,8 +24,7 @@ const styles = () => ({
     },
 });
 
-const SignInForm = ({classes}) => {
-    const {handlerGotoSignUp} = useContext(IntroPageFormCtx);
+const SignInForm = ({classes, handlerGotoSignUp}) => {
     const {signInHandler} = useContext(AuthCtx);
 
     const [username, setUsername] = useState('');

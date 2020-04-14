@@ -5,7 +5,6 @@ import {Logo} from 'loft-taxi-mui-theme';
 import SignInForm from "./sign-in-form";
 import SignupForm from "./sign-up-form";
 
-import IntroPageFormCtx from "./intro-page-ctx";
 import initStyles from './styles';
 
 const IntroPage = () => {
@@ -36,13 +35,11 @@ const IntroPage = () => {
                     animated={true}
                     classes={{logo: styles.logo}}
                 />
-                <IntroPageFormCtx.Provider value={{handlerGotoSignUp: gotoSignUp, handlerGotoSignIn: gotoSignIn}}>
                     {
                         currentForm === "sign-in-form"
-                            ? <SignInForm/>
-                            : <SignupForm/>
+                            ? <SignInForm handlerGotoSignUp={gotoSignUp}/>
+                            : <SignupForm handlerGotoSignIn={gotoSignIn}/>
                     }
-                </IntroPageFormCtx.Provider>
             </Grid>
         </Paper>
     )
