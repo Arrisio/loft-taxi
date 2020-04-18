@@ -1,5 +1,6 @@
-import React, {useContext, useState} from 'react';
-
+import React, { useState} from 'react';
+import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 import {
     Grid,
     FormControl,
@@ -12,8 +13,7 @@ import {
 } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import {AuthCtx} from "../../../app/auth";
-
+import {signIn} from '../../../modules/auth'
 
 const styles = () => ({
     paper: {
@@ -24,15 +24,23 @@ const styles = () => ({
     },
 });
 
-const SignInForm = ({classes, handlerGotoSignUp}) => {
-    const {signInHandler} = useContext(AuthCtx);
-
-    const [username, setUsername] = useState('');
+const SignInForm = ({classes, signIn, history}) => {
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const signInHandler = async e => {
+        e.preventDefault();
+
+        (async () => {signIn({email, password})})()
+            .then(() => {
+                console.log('redirect')
+                history.push('/')
+            })
+    }
 
     return (
         <Paper className={classes.paper}>
-            <form onSubmit={() => signInHandler(username, password)} data-testid="formSignIn">
+            <form onSubmit={signInHandler} data-testid="formSignIn">
                 <Grid container direction="column">
                     <Typography
                         component="h1"
@@ -48,7 +56,6 @@ const SignInForm = ({classes, handlerGotoSignUp}) => {
                             align="left"
                             underline="none"
                             href="/signup"
-                            onClick={handlerGotoSignUp}
                             data-testid="linkGotoSignUp"
                         >
                             Зарегистрируйтесь
@@ -61,13 +68,13 @@ const SignInForm = ({classes, handlerGotoSignUp}) => {
                         <Input
                             className={classes.input}
                             id="username"
-                            name="username"
+                            name="email"
                             type="text"
                             placeholder="Имя пользователя"
                             required
-                            inputProps={{ "data-testid": "inputLoginName" }}
-                            value= {username}
-                            onChange={ e => setUsername(e.target.value)}
+                            inputProps={{"data-testid": "inputLoginName"}}
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                         />
                     </FormControl>
                     <FormControl required>
@@ -79,7 +86,7 @@ const SignInForm = ({classes, handlerGotoSignUp}) => {
                             type="password"
                             placeholder="Пароль"
                             required
-                            inputProps={{ "data-testid": "inputPassword" }}
+                            inputProps={{"data-testid": "inputPassword"}}
                             onChange={e => setPassword(e.target.value)}
                             value={password}
                         />
@@ -101,4 +108,7 @@ const SignInForm = ({classes, handlerGotoSignUp}) => {
     );
 };
 
-export default withStyles(styles)(SignInForm);
+
+export default withStyles(styles)(
+    connect(null, {signIn})(withRouter(SignInForm))
+);

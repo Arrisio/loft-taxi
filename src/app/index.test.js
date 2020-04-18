@@ -47,7 +47,7 @@ describe("auth", () => {
         expect(getByTestId("mainPage")).toBeTruthy();
     })
 
-    it("signou", () => {
+    it("signout", () => {
         fireEvent.click(getByTestId("btnSignOut"));
         expect(queryByTestId("introPage")).toBeTruthy();
         expect(queryByTestId("mainPage")).toBeFalsy();
