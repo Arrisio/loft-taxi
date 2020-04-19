@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter } from 'react-router-dom';
 
 import {MuiThemeProvider} from "@material-ui/core/styles";
 
@@ -16,7 +17,9 @@ import App from "./app";
 ReactDOM.render(
     <MuiThemeProvider theme={theme}>
         <MuiPickersUtilsProvider utils={MomentUtils}>
-            <App/>
+            <BrowserRouter>
+                <App/>
+            </BrowserRouter>
         </MuiPickersUtilsProvider>
     </MuiThemeProvider>
     , document.getElementById("root")

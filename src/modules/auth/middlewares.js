@@ -11,10 +11,9 @@ export const authMiddlware = store => next => action => {
 
         api.signIn(action.payload)
         .then(res => {
+
             if (!res.success) throw new Error('Authentication error');
-            console.log('sign in response')
-            console.log(res)
-            store.dispatch(privateActions.signInSuccess(res))
+            store.dispatch(privateActions.signInSuccess({...action.payload, ...res}))
             store.dispatch(fetchCard({token: res.token}))
         })
         .catch(error => {
@@ -30,7 +29,7 @@ export const authMiddlware = store => next => action => {
                 console.log(res)
                 if (!res.success) throw new Error('Registration error');
 
-                store.dispatch(privateActions.signUpSuccess(res))
+                store.dispatch(privateActions.signUpSuccess({...action.payload, ...res}))
                 store.dispatch(fetchCard({token: res.token}))
             })
             .catch(error => store.dispatch(privateActions.signUpFaliure(error)));

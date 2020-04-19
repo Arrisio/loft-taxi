@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {withRouter} from 'react-router-dom';
+import {Link as RouterLink, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {
@@ -35,8 +35,12 @@ const SignUpForm = ({classes, signUp, history}) => {
 
     const signUpHandler = e => {
         e.preventDefault();
-        (async () => {signUp({name, surname, email, password})})()
-            .then(() => {history.push('/')})
+        (async () => {
+            signUp({name, surname, email, password})
+        })()
+            .then(() => {
+                history.push('/')
+            })
     }
 
     return (
@@ -53,14 +57,9 @@ const SignUpForm = ({classes, signUp, history}) => {
                     </Typography>
                     <Typography align="left">
                         Уже зарегистрирован?{' '}
-                        <Link
-                            align="left"
-                            underline="none"
-                            href="/signin"
-                            data-testid="linkGotoSignIn"
-                        >
-                            Войти
-                        </Link>
+                            <RouterLink to="/signin" data-testid="linkGotoSignIn" >
+                                Войти
+                            </RouterLink>
                     </Typography>
                     <FormControl required>
                         <InputLabel htmlFor="email">
@@ -87,7 +86,7 @@ const SignUpForm = ({classes, signUp, history}) => {
                                 type="text"
                                 placeholder="Имя"
                                 required
-                                value = {name}
+                                value={name}
                                 onChange={e => setName(e.target.value)}
                             />
                         </FormControl>
@@ -100,7 +99,7 @@ const SignUpForm = ({classes, signUp, history}) => {
                                 type="text"
                                 placeholder="Фамилия"
                                 required
-                                value = {surname}
+                                value={surname}
                                 onChange={e => setSurname(e.target.value)}
                             />
                         </FormControl>

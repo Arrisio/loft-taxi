@@ -1,10 +1,11 @@
 import React from "react";
 import {Provider} from 'react-redux';
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import { withRouter } from 'react-router'
+import {Route, Switch, Redirect } from 'react-router-dom';
 
 import createStore from './store';
 import {signOut} from '../modules/auth'
-import PrivateRoute from "./private-route";
+import AuthRoute from "./auth-route";
 import MainPage from "../layouts/main-page";
 import Map from "../layouts/main-page/map";
 import Profile from "../layouts/main-page/profile";
@@ -15,21 +16,21 @@ import SignUpForm from "../layouts/intro-page/sign-up-form";
 
 const store = createStore();
 
+
 const App = () => (
     <Provider store={store}>
-        <BrowserRouter>
             <Switch>
-                <Route path="/signin" exact>
+                <AuthRoute path="/signin" exact authType="identity-page">
                     <IntroPage>
                         <SignInForm/>
                     </IntroPage>
-                </Route>
+                </AuthRoute>
 
-                <Route path="/signup" exact>
+                <AuthRoute path="/signup" exact authType="identity-page">
                     <IntroPage>
                         <SignUpForm/>
                     </IntroPage>
-                </Route>
+                </AuthRoute>
 
                 <Route path="/signout" exact render={({history}) => {
                     store.dispatch(signOut());
@@ -37,21 +38,20 @@ const App = () => (
                 }}>
                 </Route>
 
-                <PrivateRoute path="/(map)?" exact>
+                <AuthRoute path="/(map)?" exact>
                     <MainPage>
                         <Map/>
                     </MainPage>
-                </PrivateRoute>
+                </AuthRoute>
 
-                <PrivateRoute path="/profile" exact>
+                <AuthRoute path="/profile" exact>
                     <MainPage>
                         <Profile/>
                     </MainPage>
-                </PrivateRoute>
+                </AuthRoute>
 
                 <Redirect to="/"/>
             </Switch>
-        </BrowserRouter>
     </Provider>
 );
 

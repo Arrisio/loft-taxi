@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {
@@ -11,6 +11,8 @@ import {
     Link,
     Paper,
 } from '@material-ui/core';
+
+import {Link as RouterLink} from 'react-router-dom';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import {signIn} from '../../../modules/auth'
@@ -28,14 +30,9 @@ const SignInForm = ({classes, signIn, history}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const signInHandler = async e => {
+    const signInHandler = e => {
         e.preventDefault();
-
-        (async () => {signIn({email, password})})()
-            .then(() => {
-                console.log('redirect')
-                history.push('/')
-            })
+        signIn({email, password});
     }
 
     return (
@@ -52,14 +49,16 @@ const SignInForm = ({classes, signIn, history}) => {
                     </Typography>
                     <Typography align="left">
                         Новый пользователь?{' '}
-                        <Link
-                            align="left"
-                            underline="none"
-                            href="/signup"
-                            data-testid="linkGotoSignUp"
-                        >
-                            Зарегистрируйтесь
-                        </Link>
+                        {/*<Link*/}
+                        {/*    align="left"*/}
+                        {/*    underline="none"*/}
+                        {/*    // to="/signup"*/}
+                        {/*    data-testid="linkGotoSignUp"*/}
+                        {/*>*/}
+                            <RouterLink to="/signup" data-testid="linkGotoSignUp">
+                                Зарегистрируйтесь
+                            </RouterLink>
+                        {/*</Link>*/}
                     </Typography>
                     <FormControl required>
                         <InputLabel htmlFor="username">

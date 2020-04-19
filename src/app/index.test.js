@@ -1,9 +1,20 @@
 import React, {createContext} from "react";
+
+import { Router } from 'react-router-dom'
+import { createMemoryHistory } from 'history'
+import { render, fireEvent } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
+
 import App from "./index";
-import {render, screen, fireEvent} from "@testing-library/react";
+
 
 const initTestQueries = () => {
-    const {getByTestId, queryByTestId } = render(<App/>);
+    const history = createMemoryHistory ();
+    const {getByTestId, queryByTestId } = render(
+        <Router history={history}>
+            <App/>
+        </Router>
+        );
     return [getByTestId, queryByTestId]
 }
 
@@ -22,6 +33,7 @@ describe("intro page", () => {
 
     it("can toggle to signup form", () => {
         fireEvent.click(getByTestId("linkGotoSignUp"));
+        debugger
         expect(queryByTestId("formSignIn")).toBeFalsy();
         expect(getByTestId("formSignUp")).toBeTruthy();
     })
@@ -39,7 +51,7 @@ describe("auth", () => {
     let getByTestId, queryByTestId;
     beforeEach(() => {
         [getByTestId, queryByTestId] = initTestQueries();
-        fireEvent.submit(getByTestId('formSignIn'), { target: { username: 'a', password: '33' } });
+        fireEvent.submit(getByTestId('formSignIn'), { target: { username: 'test@df', password: '123' } });
     })
 
     it("signin", () => {
