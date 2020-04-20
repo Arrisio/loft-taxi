@@ -2,7 +2,7 @@ import React, {createContext} from "react";
 
 import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent,waitFor, wait } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
 import App from "./index";
@@ -49,19 +49,22 @@ describe("intro page", () => {
 
 describe("auth", () => {
     let getByTestId, queryByTestId;
-    beforeEach(() => {
+    beforeEach(async () => {
         [getByTestId, queryByTestId] = initTestQueries();
         fireEvent.submit(getByTestId('formSignIn'), { target: { username: 'test@df', password: '123' } });
+        await wait();
     })
 
-    it("signin", () => {
-        expect(queryByTestId("introPage")).toBeFalsy();
-        expect(getByTestId("mainPage")).toBeTruthy();
+    it("signin", async () => {
+        wait(() =>  expect(queryByTestId("introPage")).toBeFalsy());
+        wait(() =>  expect(getByTestId("mainPage")).toBeTruthy());
     })
 
-    it("signout", () => {
-        fireEvent.click(getByTestId("btnSignOut"));
-        expect(queryByTestId("introPage")).toBeTruthy();
-        expect(queryByTestId("mainPage")).toBeFalsy();
+    it("signout", async () => {
+            wait(() =>  fireEvent.click(getByTestId("btnSignOut")));
+            wait(() =>  expect(queryByTestId("introPage")).toBeTruthy());
+            wait(() =>  expect(queryByTestId("mainPage")).toBeFalsy());
+        }
+        )
     })
-});
+
