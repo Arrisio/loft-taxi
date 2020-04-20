@@ -52,7 +52,6 @@ describe("auth", () => {
     beforeEach(async () => {
         [getByTestId, queryByTestId] = initTestQueries();
         fireEvent.submit(getByTestId('formSignIn'), { target: { username: 'test@df', password: '123' } });
-        await wait();
     })
 
     it("signin", async () => {
