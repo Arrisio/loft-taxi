@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
+import React  from 'react';
 import PropTypes from 'prop-types';
+import {withRouter} from 'react-router-dom';
 
 import { AppBar, Toolbar, Button, Container } from '@material-ui/core';
 import { Logo } from 'loft-taxi-mui-theme';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import {AuthCtx} from "../../../app/auth";
-// import {warnOnce} from "mapbox-gl/src/util/util";
+import {connect} from 'react-redux';
+import {signOut} from "../../../modules/auth";
 
 
 const styles = () => ({
@@ -18,8 +19,7 @@ const styles = () => ({
     },
 });
 
-const Header = ({showProfileHandler, showMapHandler, classes }) => {
-    const {signOutHandler} = useContext(AuthCtx);
+const Header = ({history, signOut, classes }) => {
 
     return (
         <AppBar position="static" className={classes.appBar}>
@@ -27,18 +27,18 @@ const Header = ({showProfileHandler, showMapHandler, classes }) => {
                 <Container className={classes.logo}>
                     <Logo />
                 </Container>
-                <Button data-testid="btnGotoMap" onClick={showMapHandler}>Карта</Button>
-                <Button data-testid="btnGotoProfile" onClick={showProfileHandler}>Профиль</Button>
-                <Button data-testid="btnSignOut" onClick={signOutHandler}>Выйти</Button>
+                <Button data-testid="btnGotoMap" onClick={() => {history.push('/map')}}>Карта</Button>
+                <Button data-testid="btnGotoProfile" onClick={()=> {history.push('/profile')}}>Профиль</Button>
+                <Button data-testid="btnSignOut" onClick={signOut}>Выйти</Button>
             </Toolbar>
         </AppBar>
     );
 };
 
 Header.propTypes = {
-    showProfileHandler: PropTypes.func,
-    showMapHandler: PropTypes.func,
     classes: PropTypes.object
 };
 
-export default withStyles(styles)(Header);
+export default withStyles(styles)(
+    connect(null, {signOut})(withRouter(Header))
+);

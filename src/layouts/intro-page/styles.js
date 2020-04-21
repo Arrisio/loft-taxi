@@ -10,5 +10,3 @@ export default makeStyles({
         backgroundSize: 'cover'
     }
 })
-
-// export default useStyles();

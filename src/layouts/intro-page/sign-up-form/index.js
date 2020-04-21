@@ -1,4 +1,6 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
+import {Link as RouterLink, withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 import {
     Grid,
@@ -11,7 +13,8 @@ import {
     Paper,
 } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
-import {AuthCtx} from "../../../app/auth";
+
+import {signUp} from "../../../modules/auth";
 
 
 const styles = () => ({
@@ -23,15 +26,26 @@ const styles = () => ({
         marginRight: '10px',
     },
 });
-const SignUpForm = ({classes, handlerGotoSignIn}) => {
-    const {signInHandler} = useContext(AuthCtx);
+const SignUpForm = ({classes, signUp, history}) => {
 
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+
+    const signUpHandler = e => {
+        e.preventDefault();
+        (async () => {
+            signUp({name, surname, email, password})
+        })()
+            .then(() => {
+                history.push('/')
+            })
+    }
 
     return (
         <Paper className={classes.paper}>
-            <form onSubmit={() => signInHandler(username, password)} data-testid="formSignUp">
+            <form onSubmit={signUpHandler} data-testid="formSignUp">
                 <Grid container direction="column">
                     <Typography
                         component="h1"
@@ -43,15 +57,9 @@ const SignUpForm = ({classes, handlerGotoSignIn}) => {
                     </Typography>
                     <Typography align="left">
                         Уже зарегистрирован?{' '}
-                        <Link
-                            align="left"
-                            underline="none"
-                            href="/signin"
-                            onClick={handlerGotoSignIn}
-                            data-testid="linkGotoSignIn"
-                        >
-                            Войти
-                        </Link>
+                            <RouterLink to="/signin" data-testid="linkGotoSignIn" >
+                                Войти
+                            </RouterLink>
                     </Typography>
                     <FormControl required>
                         <InputLabel htmlFor="email">
@@ -64,8 +72,8 @@ const SignUpForm = ({classes, handlerGotoSignIn}) => {
                             type="email"
                             placeholder="Адрес электронной почты"
                             required
-                            value={username}
-                            onChange={e => setUsername(e.target.value)}
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                         />
                     </FormControl>
                     <Grid>
@@ -78,6 +86,8 @@ const SignUpForm = ({classes, handlerGotoSignIn}) => {
                                 type="text"
                                 placeholder="Имя"
                                 required
+                                value={name}
+                                onChange={e => setName(e.target.value)}
                             />
                         </FormControl>
                         <FormControl required>
@@ -89,6 +99,8 @@ const SignUpForm = ({classes, handlerGotoSignIn}) => {
                                 type="text"
                                 placeholder="Фамилия"
                                 required
+                                value={surname}
+                                onChange={e => setSurname(e.target.value)}
                             />
                         </FormControl>
                     </Grid>
@@ -124,4 +136,7 @@ const SignUpForm = ({classes, handlerGotoSignIn}) => {
     );
 };
 
-export default withStyles(styles)(SignUpForm);
+export default withStyles(styles)(
+    connect(null, {signUp})(withRouter(SignUpForm))
+);
+
