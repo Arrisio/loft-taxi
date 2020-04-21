@@ -13,10 +13,11 @@ export default function* watcher() {
 }
 
 
-function* signIn(action) {
+export function* signIn(action) {
     try {
         yield put(privateActions.signInRequest());
         const res = yield call(api.signIn, action.payload);
+        // console.log(res)
         if (!res.success) throw new Error('Authentication error');
         yield put(privateActions.signInSuccess({...action.payload, ...res}));
 
@@ -27,7 +28,7 @@ function* signIn(action) {
 }
 
 
-function* signUp(action) {
+export function* signUp(action) {
     try {
         yield put(privateActions.signInRequest());
         const res = yield call(api.signUp, action.payload);
