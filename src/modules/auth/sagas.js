@@ -17,7 +17,7 @@ export function* signIn(action) {
     try {
         yield put(privateActions.signInRequest());
         const res = yield call(api.signIn, action.payload);
-        // console.log(res)
+        console.log(res)
         if (!res.success) throw new Error('Authentication error');
         yield put(privateActions.signInSuccess({...action.payload, ...res}));
 
