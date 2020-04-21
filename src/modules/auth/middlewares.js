@@ -1,4 +1,6 @@
-import * as api from '../../api';
+// TODO Delete this file
+
+import * as api from './api';
 
 import * as publicActions from './actions-public';
 import * as privateActions from './actions-private';

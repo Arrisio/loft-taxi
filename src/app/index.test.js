@@ -1,6 +1,6 @@
 import React, {createContext} from "react";
 
-import { Router } from 'react-router-dom'
+import { MemoryRouter as Router} from 'react-router-dom'
 import { createMemoryHistory } from 'history'
 import { render, fireEvent,waitFor, wait } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'

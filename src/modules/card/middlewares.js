@@ -1,14 +1,15 @@
-import * as api from '../../api';
+// TODO Delete this file
 
 import * as publicActions from './actions-public';
 import * as privateActions from './actions-private';
+import {fetchCard, saveCard} from "./api";
 
 
 export const cardMiddlware = store => next => action => {
     if (action.type === publicActions.saveCard.toString()) {
         store.dispatch(privateActions.saveCardRequest());
 
-        api.saveCard(action.payload)
+        saveCard(action.payload)
         .then(res => {
             if (!res.success) throw new Error('Save card error');
 
@@ -24,7 +25,7 @@ export const cardMiddlware = store => next => action => {
     if (action.type === publicActions.fetchCard.toString()) {
         store.dispatch(privateActions.fetchCardRequest());
 
-        api.fetchCard(action.payload)
+        fetchCard(action.payload)
             .then(res => {
                 console.log('fetch card success1')
                 console.log(res)
