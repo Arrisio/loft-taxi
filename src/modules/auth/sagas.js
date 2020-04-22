@@ -17,13 +17,14 @@ export function* signIn(action) {
     try {
         yield put(privateActions.signInRequest());
         const res = yield call(api.signIn, action.payload);
-        console.log(res)
-        if (!res.success) throw new Error('Authentication error');
+
+        if (!res.success) throw new Error(res.error);
+
         yield put(privateActions.signInSuccess({...action.payload, ...res}));
 
         yield fork(fetchCard, {payload:{token: res.token}})
     } catch (error) {
-        yield put(privateActions.signInFaliure(error));
+        yield put(privateActions.signInFaliure(error.message));
     }
 }
 
