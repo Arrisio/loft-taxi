@@ -22,8 +22,8 @@ import {
     getCardId,
     getCardName,
     getCardNumber
-} from '../../../modules/card';
-import {getToken} from '../../../modules/auth';
+} from '../../modules/card';
+import {getToken} from '../../modules/auth';
 
 const styles = () => ({
     paper: {

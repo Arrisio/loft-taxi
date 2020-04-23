@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {withRouter} from 'react-router-dom';
+import {withRouter, Link as RouterLink} from 'react-router-dom';
 import {connect} from 'react-redux';
+
 import {
     Grid,
     FormControl,
@@ -11,11 +12,11 @@ import {
     Link,
     Paper,
 } from '@material-ui/core';
-
-import {Link as RouterLink} from 'react-router-dom';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import {signIn} from '../../../modules/auth'
+import IntroPage from "../../components/intro-page-wrapper";
+import {signIn} from '../../modules/auth'
+
 
 const styles = () => ({
     paper: {
@@ -36,6 +37,7 @@ const SignInForm = ({classes, signIn, history}) => {
     }
 
     return (
+        <IntroPage>
         <Paper className={classes.paper}>
             <form onSubmit={signInHandler} data-testid="formSignIn">
                 <Grid container direction="column">
@@ -104,6 +106,7 @@ const SignInForm = ({classes, signIn, history}) => {
                 </Grid>
             </form>
         </Paper>
+        </IntroPage>
     );
 };
 

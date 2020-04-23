@@ -7,7 +7,7 @@ import { Logo } from 'loft-taxi-mui-theme';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import {connect} from 'react-redux';
-import {signOut} from "../../../modules/auth";
+import {signOut} from "../../modules/auth";
 
 
 const styles = () => ({

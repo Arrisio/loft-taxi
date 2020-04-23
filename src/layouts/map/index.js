@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-// import Header from '../common/Header';
+import MainPage from "../../components/main-page-wrapper";
 
 const styles = {
     width: '100vw',
@@ -32,7 +32,11 @@ const Map = ({ handlerNavigation }) => {
         return () => map.remove();
     }, []);
 
-    return <div ref={mapContainerRef} style={styles} />
+    return (
+        <MainPage>
+            <div ref={mapContainerRef} style={styles} />
+        </MainPage>
+        )
 };
 
 export default Map;
