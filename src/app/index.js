@@ -6,16 +6,13 @@ import {Route, Switch, Redirect} from 'react-router-dom';
 import createStore from './store';
 import {signOut} from '../modules/auth'
 import AuthRoute from "./auth-route";
-import MainPage from "../components/main-page-wrapper";
 import Map from "../layouts/map";
 import Profile from "../layouts/profile";
-import IntroPage from "../components/intro-page-wrapper";
 import SignInForm from "../layouts/sign-in-form";
 import SignUpForm from "../layouts/sign-up-form";
 
 
 const store = createStore();
-
 
 const App = () => (
     <Provider store={store}>
