@@ -12,11 +12,9 @@ import {
 } from "./actions-private";
 
 const isLoggedIn = handleActions({
-    // [signInRequest]: () => false,
     [signInSuccess]: () => true,
     [signInFaliure]: () => false,
 
-    // [signUpRequest]: () => false,
     [signUpSuccess]: () => true,
     [signUpFaliure]: () => false,
 

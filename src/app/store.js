@@ -1,8 +1,8 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import { authMiddlware } from '../modules/auth';
-import { cardMiddlware } from '../modules/card';
-import  {rootReducer, rootSaga} from '../modules';
 import createSagaMiddleware from "redux-saga";
+
+import  {rootReducer, rootSaga} from '../modules';
+import {fetchRout} from '../modules/route'
 
 const loadStateFromLocalStorage = () => {
     try {
@@ -33,8 +33,6 @@ const createAppStore = () => {
         compose(
             applyMiddleware(
                 sagaMiddleware
-                // authMiddlware,
-                // cardMiddlware,
                 ),
             window.__REDUX_DEVTOOLS_EXTENSION__
                 ? window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -47,6 +45,8 @@ const createAppStore = () => {
     store.subscribe(() => {
         saveStateToLocalStorage(store.getState());
     })
+    //https://loft-taxi.glitch.me/route?address1=Шаверма на Невском&address2=Пулково (LED)
+    store.dispatch(fetchRout({address1:"Шаверма%20на%20Невском", address2: "Пулково%20(LED)"}));
 
     return store;
 };

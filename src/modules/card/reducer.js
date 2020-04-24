@@ -11,19 +11,8 @@ import {
 } from "./actions-private";
 
 
-// const id = handleActions({
-//     [saveCardSuccess]: (_state, action) => action.payload.id,
-//
-//     [fetchCardFaliure]: () => null,
-//     [fetchCardRequest]: () => null,
-//     [fetchCardSuccess]: (_state, action) => action.payload.id,
-// }, null);
-
 const cardNumber = handleActions({
-    [saveCardSuccess]: (_state, action) => {
-        debugger
-        return action.payload.cardNumber
-    },
+    [saveCardSuccess]: (_state, action) => action.payload.cardNumber,
 
     [fetchCardFaliure]: () => null,
     [fetchCardRequest]: () => null,
