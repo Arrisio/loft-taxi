@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import { Link as RouterLink, withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { Container, Paper, Box, Typography, Button } from "@material-ui/core/";
-import {Grid} from "@material-ui/core";
+import {Grid, Paper, Box, Typography, Button } from "@material-ui/core/";
+
 import styles from './styles'
+import {clearRoute} from '../../../modules/route'
 
-
-const OrderSuccess = ({classes, confirmHandler} ) => (
+const OrderSuccess = ({classes, confirmHandler, clearRoute} ) => (
     <Paper className={classes.paper}>
         <Grid container direction="column">
             <Typography
@@ -25,7 +25,7 @@ const OrderSuccess = ({classes, confirmHandler} ) => (
                 variant="contained"
                 color="primary"
                 fullWidth
-                onClick={confirmHandler}
+                onClick={() => {clearRoute(); confirmHandler();}}
             >
                 Сделать новый заказ
             </Button>
@@ -33,4 +33,4 @@ const OrderSuccess = ({classes, confirmHandler} ) => (
     </Paper>
 );
 
-export default withStyles(styles)(OrderSuccess);
+export default connect(null, {clearRoute})(withStyles(styles)(OrderSuccess));

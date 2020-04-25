@@ -42,7 +42,6 @@ describe("Auth saga", () => {
                 sagas.signIn,
                 action,
             )
-
             expect(dispatched).toContainEqual(privateActions.signInRequest());
             expect(api.signIn).toHaveBeenCalled();
             expect(api.signIn).toHaveBeenCalledWith(action.payload);

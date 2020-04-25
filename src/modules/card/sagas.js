@@ -11,7 +11,7 @@ export default function* watcher() {
 }
 
 
-function* saveCard(action) {
+export function* saveCard(action) {
     try {
         yield put(privateActions.saveCardRequest());
         const res = yield call(api.saveCard, action.payload);

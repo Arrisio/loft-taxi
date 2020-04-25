@@ -3,6 +3,7 @@ export const drawRoute = (map, coordinates) => {
 		center: coordinates[0],
 		zoom: 15
 	});
+
 	map.addLayer({
 		id: "route",
 		type: "line",
