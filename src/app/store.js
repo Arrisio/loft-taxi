@@ -2,7 +2,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import createSagaMiddleware from "redux-saga";
 
 import  {rootReducer, rootSaga} from '../modules';
-import {fetchRout} from '../modules/route'
+import {fetchRoute} from '../modules/route'
 
 const loadStateFromLocalStorage = () => {
     try {
@@ -45,8 +45,6 @@ const createAppStore = () => {
     store.subscribe(() => {
         saveStateToLocalStorage(store.getState());
     })
-    //https://loft-taxi.glitch.me/route?address1=Шаверма на Невском&address2=Пулково (LED)
-    store.dispatch(fetchRout({address1:"Шаверма%20на%20Невском", address2: "Пулково%20(LED)"}));
 
     return store;
 };

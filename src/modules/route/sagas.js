@@ -6,7 +6,7 @@ import * as api from './api'
 
 
 export default function* watcher() {
-    yield takeLatest(publicActions.fetchRout, fetchRoute);
+    yield takeLatest(publicActions.fetchRoute, fetchRoute);
 }
 
 export function* fetchRoute({payload}) {

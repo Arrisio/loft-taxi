@@ -19,7 +19,6 @@ import {
     saveCard,
     getCardCvc,
     getCardExpiryDate,
-    getCardId,
     getCardName,
     getCardNumber
 } from '../../modules/card';
@@ -197,7 +196,6 @@ const mapStateToProps = state => ({
     token: getToken(state),
     cvc: getCardCvc(state),
     expiryDate: getCardExpiryDate(state),
-    cardId: getCardId(state),
     cardName: getCardName(state),
     cardNumber: getCardNumber(state),
 })

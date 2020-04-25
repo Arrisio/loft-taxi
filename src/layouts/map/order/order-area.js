@@ -1,36 +1,32 @@
-import React, {useState} from 'react';
-import {connect} from 'react-redux';
-
-import {
-    Grid,
-    FormControl,
-    InputLabel,
-    Input,
-    Button,
-    Typography,
-    Link,
-    Paper,
-} from '@material-ui/core';
+import React, {useState, useEffect} from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
+import { Container, Grid, Button, Typography, Paper } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
-import {signIn} from "../../../modules/auth";
-import {withRouter} from "react-router-dom";
+import { getIsPaymentMethodReceived } from '../../../modules/card';
+import OrderForm from './order-form';
+import NeedCard from "./need-card";
+import OrderSuccess from "./order-success";
+import styles from './styles';
 
-const styles = () => (
-    {a1: {a: 'b'}}
-);
+const Order = ({ classes, isPaymentMethodReceived, isOrdered, reset, orderTaxi }) => {
+    const [flagOrderSuccessMsg, setFlagOrderSuccessMsg] = useState(false);
+    const toggleFlagOrderSuccessMsg = () => {setFlagOrderSuccessMsg(!flagOrderSuccessMsg)};
 
-const OrderArea =  () => {
+    const OrderContent = (flagOrderSuccessMsg) ? OrderSuccess : OrderForm
+
     return (
-        <Paper>
+        <Container className={classes.container}>
+            <Paper className={classes.order}>
+                {(isPaymentMethodReceived) ? <OrderContent confirmHandler={toggleFlagOrderSuccessMsg}/> : <NeedCard/>}
+            </Paper>
+        </Container>
+    );
+};
 
+const mapStateToProps = state => ({
+    isPaymentMethodReceived: getIsPaymentMethodReceived(state),
+});
 
-
-        </Paper>
-    )
-
-
-}
-
-export default withStyles(styles)(
-    connect(null, {})(withRouter(OrderArea))
-);
+export default connect(mapStateToProps, null)(withStyles(styles)(Order));

@@ -5,6 +5,7 @@ import * as privateActions from './actions-private';
 import * as api from './api'
 
 import {fetchCard} from '../card/sagas';
+import {fetchAddressList} from '../address-list';
 
 export default function* watcher() {
     yield takeLatest(publicActions.signIn, signIn);
@@ -22,7 +23,8 @@ export function* signIn(action) {
 
         yield put(privateActions.signInSuccess({...action.payload, ...res}));
 
-        yield fork(fetchCard, {payload:{token: res.token}})
+        yield fork(fetchCard, {payload: {token: res.token}})
+        yield fork(fetchAddressList)
     } catch (error) {
         yield put(privateActions.signInFaliure(error.message));
     }

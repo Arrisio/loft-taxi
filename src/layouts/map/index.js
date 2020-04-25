@@ -3,6 +3,8 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import MainPage from "../../components/main-page-wrapper";
 import MapArea from "./map-area";
+import OrderArea from "./order/order-area"
+
 
 const styles = {
     width: '100vw',
@@ -13,8 +15,9 @@ const styles = {
 // const Map = ({ handlerNavigation }) => <div data-testid="map"> </div>;
 
 const Map = () => (
-        <MainPage>
+        <MainPage data-testid="map">
             <MapArea/>
+            <OrderArea/>
         </MainPage>
         )
 ;

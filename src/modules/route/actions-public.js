@@ -1,3 +1,3 @@
 import {createAction} from 'redux-actions'
 
-export const fetchRout = createAction('FETCH_ROUT');
+export const fetchRoute = createAction('FETCH_ROUT');
