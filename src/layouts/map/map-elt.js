@@ -51,7 +51,6 @@ const MapElt = ({ route }) => {
 
     if (map && route) {
         clearDawRoute()
-        console.log(route[0])
         drawRoute(map, route)
     }
 

@@ -2,8 +2,8 @@ const BASE_URL = 'https://loft-taxi.glitch.me/';
 
 export let signIn = payload => {
     // {email: "email@example.com", password: "password"}
-    let response = '{"success":true,"token":"TOKEN123"}'
-    return JSON.parse(response); // {success: false, error: Сообщение об ошибке}
+    // let response = '{"success":true,"token":"TOKEN123"}'
+    // return JSON.parse(response); // {success: false, error: Сообщение об ошибке}
 
     return fetch(`${BASE_URL}/auth`, {
         method: 'POST',

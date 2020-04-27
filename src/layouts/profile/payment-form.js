@@ -13,7 +13,7 @@ import {CardCVCFormat} from "./card-cvc-format";
 import {styles} from "./styles";
 
 
-const PaymentForm = ({classes, token, saveCard, cvc, expiryDate, cardId, cardName, cardNumber}) => {
+const PaymentForm = ({classes, token, saveCard, cvc, expiryDate, cardName, cardNumber}) => {
     const [formCardName, setFormCardName] = useState(cardName);
     const [formCardNumber, setFormCardNumber] = useState(cardNumber);
     const [formCvc, setFormCvc] = useState(cvc);

@@ -10,7 +10,7 @@ import NeedCard from "./need-card";
 import OrderSuccess from "./order-success";
 import styles from './styles';
 
-const Order = ({ classes, isPaymentMethodReceived, isOrdered, reset, orderTaxi }) => {
+const Order = ({ classes, isPaymentMethodReceived}) => {
     const [flagOrderSuccessMsg, setFlagOrderSuccessMsg] = useState(false);
     const toggleFlagOrderSuccessMsg = () => {setFlagOrderSuccessMsg(!flagOrderSuccessMsg)};
 
