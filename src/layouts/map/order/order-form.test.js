@@ -35,7 +35,6 @@ describe("order form ", () => {
 
     it("order sended successfully", async () => {
     const confirmHandler=jest.fn();
-    const fn = jest.fn();
 
     const {getByTestId, queryByTestId, getByText} =  render(<OrderForm
         classes={{}}
@@ -45,7 +44,7 @@ describe("order form ", () => {
     />);
     const fromAddrField = getByText("Откуда");
     const toAddrField = getByText("Куда");
-    const makeOrderBtn = getByText("Вызвать такси");
+    const makeOrderBtn = getByTestId("order-submit");
 
 
 

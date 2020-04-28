@@ -69,7 +69,7 @@ export const OrderForm = ({ classes, fetchRoute, addresses, confirmHandler }) =>
                             color="primary"
                             fullWidth
                             type="submit"
-                            data-testid="login-submit"
+                            data-testid="order-submit"
                             disabled={!addressFrom || !addressTo}
                         >
                             Вызвать такси
