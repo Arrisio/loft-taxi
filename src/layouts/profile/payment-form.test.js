@@ -66,15 +66,22 @@ describe("order form ", () => {
                 saveCard={saveCard}/>
         );
 
-        wait(() => {fireEvent.submit(
-            getByTestId('save-card-form'),
-            {target: {
-                    card_number: '0000 0000 0000 0000',
-                    card_date: '12/12',
-                    card_name: 'vasia',
-                    // card_cvc: '123'
-                }}
-        )});
+        wait(() => {
+            fireEvent.submit(
+                getByTestId('save-card-form'),
+                {
+                    target: {
+                        card_number: '0000 0000 0000 0000',
+                        card_date: '12/12',
+                        card_name: 'vasia',
+                        // card_cvc: '123'
+                    }
+                }
+            )
+        });
         expect(saveCard).not.toHaveBeenCalled()
-    })
+        wait(() => {
+            expect(confirmCardSaved).not.toHaveBeenCalled()
+        });
+    });
 });
