@@ -72,7 +72,7 @@ describe("order form ", () => {
             addresses={['addr1', 'addr2', 'addr3']}
             confirmHandler={confirmHandler}
         />);
-        const fromAddrField = getByText("Откуда");
+
         const toAddrField = getByText("Куда");
         const makeOrderBtn = getByTestId("order-submit");
 

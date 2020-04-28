@@ -13,7 +13,7 @@ import {CardCVCFormat} from "./card-cvc-format";
 import {styles} from "./styles";
 
 
-const PaymentForm = ({classes, token, saveCard, cvc, expiryDate, cardName, cardNumber, confirmCardSaved}) => {
+export const PaymentForm = ({classes, token, saveCard, cvc, expiryDate, cardName, cardNumber, confirmCardSaved}) => {
     const [formCardName, setFormCardName] = useState(cardName);
     const [formCardNumber, setFormCardNumber] = useState(cardNumber);
     const [formCvc, setFormCvc] = useState(cvc);
@@ -40,7 +40,7 @@ const PaymentForm = ({classes, token, saveCard, cvc, expiryDate, cardName, cardN
             <Typography align="center" className={classes.subtitle}>
                 Способ оплаты
             </Typography>
-            <form onSubmit={handlerSubmit}>
+            <form onSubmit={handlerSubmit} data-testid="save-card-form">
                 <Grid container justify="center" spacing={4}>
                     <Grid item>
                         <Card className={classes.card} elevation={3}>
