@@ -5,6 +5,7 @@ import {MemoryRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import React from "react";
 import {runSaga} from "redux-saga";
+import 'mutationobserver-shim';
 
 export const renderWithProviders  = (children, store=createStore(rootReducer)) => {
     let rendered = render(

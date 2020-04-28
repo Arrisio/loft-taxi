@@ -45,15 +45,28 @@ describe("order form ", () => {
     />);
     const fromAddrField = getByText("Откуда");
     const toAddrField = getByText("Куда");
-    const makeOrderBtn = getByText("Куда");
+    const makeOrderBtn = getByText("Вызвать такси");
 
 
 
-    wait(() => {fireEvent.submit(getByTestId('order-form'), {target: {address_from: 'addr1', address_to: 'addr2'}})});
+    // wait(() => {fireEvent.submit(getByTestId('order-form'), {target: {address_from: 'addr1', address_to: 'addr2'}})});
     // expect(confirmHandler).toHaveBeenCalled()
 
 
-await selectEvent.select(fromAddrField, 'addr1')
+    await selectEvent.select(fromAddrField, 'addr1');
+    expect(getByTestId("order-form")).toHaveFormValues({ address_from: 'addr1' });
+
+    await selectEvent.select(toAddrField, 'addr2');
+    expect(getByTestId("order-form")).toHaveFormValues({ address_to: 'addr2' })
+
+    wait (() => {
+        fireEvent.click(makeOrderBtn)
+    });
+    expect(confirmHandler).toHaveBeenCalled();
+
+
+
+    // await selectEvent.select(toAddrField, 'addr2')
     // fireEvent.change(fromAddrField, { target: { label:'addr1',  value: 'addr1' } });
     // expect(fromAddrField).toBe('addr1');
     // fireEvent.change(toAddrField, { target: { label:'addr2',  value: 'addr2' } });
