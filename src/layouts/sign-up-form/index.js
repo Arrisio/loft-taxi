@@ -35,12 +35,7 @@ const SignUpForm = ({classes, signUp, history}) => {
 
     const signUpHandler = e => {
         e.preventDefault();
-        (async () => {
-            signUp({name, surname, email, password})
-        })()
-            .then(() => {
-                history.push('/')
-            })
+        signUp({name, surname, email, password})
     }
 
     return (

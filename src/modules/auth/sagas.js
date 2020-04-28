@@ -9,7 +9,7 @@ import {fetchAddressList} from '../address-list';
 
 export default function* watcher() {
     yield takeLatest(publicActions.signIn, signIn);
-    yield takeLatest(publicActions.signUp, signIn);
+    yield takeLatest(publicActions.signUp, signUp);
     yield takeLatest(publicActions.signOut, signOut);
 }
 
@@ -33,13 +33,14 @@ export function* signIn(action) {
 
 export function* signUp(action) {
     try {
-        yield put(privateActions.signInRequest());
+        yield put(privateActions.signUpRequest());
         const res = yield call(api.signUp, action.payload);
-        if (!res.success) throw new Error('Registration error');
+        if (!res.success) throw new Error(res.error);
         yield put(privateActions.signUpSuccess({...action.payload, ...res}));
-
+        yield fork(fetchCard, {payload: {token: res.token}})
     } catch (error) {
-        yield put(privateActions.signUpFaliure(error));
+        // debugger
+        yield put(privateActions.signUpFaliure({error: error.message}));
     }
 }
 

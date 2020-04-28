@@ -38,8 +38,8 @@ const OrderForm = ({ classes, fetchRoute, addresses, confirmHandler }) => {
     return (
         <Paper className={classes.paper}>
             <form
-                id="search-form"
-                data-testid="search-form"
+                id="order-form"
+                data-testid="order-form"
                 onSubmit={makeOrder}
             >
                 <Grid container direction="column">

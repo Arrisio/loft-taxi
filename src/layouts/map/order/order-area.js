@@ -1,17 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link as RouterLink } from 'react-router-dom';
 import { Container, Grid, Button, Typography, Paper } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { getIsPaymentMethodReceived } from '../../../modules/card';
-import OrderForm from './order-form';
+import OrderForm from './OrderForm';
 import NeedCard from "./need-card";
 import OrderSuccess from "./order-success";
 import styles from './styles';
 
-const Order = ({ classes, isPaymentMethodReceived}) => {
-    const [flagOrderSuccessMsg, setFlagOrderSuccessMsg] = useState(false);
+export const OrderArea = ({ classes, isPaymentMethodReceived, flagOrderSuccessMsgInit=false}) => {
+    const [flagOrderSuccessMsg, setFlagOrderSuccessMsg] = useState(flagOrderSuccessMsgInit);
     const toggleFlagOrderSuccessMsg = () => {setFlagOrderSuccessMsg(!flagOrderSuccessMsg)};
 
     const OrderContent = (flagOrderSuccessMsg) ? OrderSuccess : OrderForm
@@ -29,4 +27,4 @@ const mapStateToProps = state => ({
     isPaymentMethodReceived: getIsPaymentMethodReceived(state),
 });
 
-export default connect(mapStateToProps, null)(withStyles(styles)(Order));
+export default connect(mapStateToProps, null)(withStyles(styles)(OrderArea));

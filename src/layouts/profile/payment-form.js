@@ -54,6 +54,7 @@ const PaymentForm = ({classes, token, saveCard, cvc, expiryDate, cardName, cardN
                                 InputProps={{
                                     inputComponent: CardNumberFormat,
                                 }}
+                                InputLabelProps={{ shrink: true }}
                                 value={formCardNumber}
                                 onChange={e => setFormCardNumber(e.target.value)}
                             />
@@ -96,6 +97,7 @@ const PaymentForm = ({classes, token, saveCard, cvc, expiryDate, cardName, cardN
                                 }}
                                 value={formCvc}
                                 onChange={e => setFormCvc(e.target.value)}
+                                InputLabelProps={{ shrink: true }}
                             />
                         </Card>
                     </Grid>

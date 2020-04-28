@@ -13,12 +13,12 @@ const renderComponent = (children, RouteComponent, ...rest) => (
     </Route>
 )
 
-const AuthRoute = ({isLoggetIn, authType = 'private', children, component: RouteComponent , ...rest}) => {
+const AuthRoute = ({isLoggetIn, authType = 'private', children, component: RouteComponent, ...rest}) => {
     if (
         (isLoggetIn && authType === 'private') ||
         (!isLoggetIn && authType === 'identity-page')
-    ){
-        return  renderComponent(children, RouteComponent, rest)
+    ) {
+        return renderComponent(children, RouteComponent, rest)
     } else if (!isLoggetIn && authType === 'private') {
         return <Redirect to='/signin'/>
     } else if (isLoggetIn && authType === 'identity-page') {

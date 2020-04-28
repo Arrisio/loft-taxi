@@ -18,8 +18,6 @@ export let signIn = payload => {
 export const signUp = payload => {
     // {email: "email@example.com", password: "password", name: "Name", surname: "Surname"}
     // return {success: 'true', token: 'AUTH_TOKEN123'};
-    console.log('sinup')
-    console.log(payload)
     return fetch(`${BASE_URL}/register`, {
         method: 'POST',
         body: JSON.stringify(payload),
