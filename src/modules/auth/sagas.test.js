@@ -5,22 +5,9 @@ import {call, fork, put} from "redux-saga/effects";
 import * as publicActions from './actions-public';
 import * as privateActions from './actions-private';
 import { fetchCard } from '../card/sagas'
-// import { auth } from "../../helpers/api";
 import * as api from './api';
+import {recordSaga} from '../../utils/test-utils'
 
-async function recordSaga(saga, initialAction) {
-    const dispatched = [];
-
-    await runSaga(
-        {
-            dispatch: (action) => dispatched.push(action)
-        },
-        saga,
-        initialAction
-    ).done;
-
-    return dispatched;
-}
 
 describe("Auth saga", () => {
     describe("signIn success", () => {

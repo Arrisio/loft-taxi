@@ -8,7 +8,7 @@ import { fetchRoute } from '../../../modules/route';
 import styles from './styles'
 
 
-const OrderForm = ({ classes, fetchRoute, addresses, confirmHandler }) => {
+export const OrderForm = ({ classes, fetchRoute, addresses, confirmHandler }) => {
     const [addressFrom, setAddressFrom] = useState(null);
     const [addressTo, setAddressTo] = useState(null);
 
@@ -36,14 +36,14 @@ const OrderForm = ({ classes, fetchRoute, addresses, confirmHandler }) => {
     };
 
     return (
-        <Paper className={classes.paper}>
+       <Paper className={classes.paper}>
             <form
                 id="order-form"
                 data-testid="order-form"
                 onSubmit={makeOrder}
             >
                 <Grid container direction="column">
-                    <FormControl className={classes.fromControl}>
+                    <FormControl className={classes.fromControl} >
                         <Select
                             name="address_from"
                             placeholder="Откуда"

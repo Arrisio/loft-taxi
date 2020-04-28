@@ -54,6 +54,7 @@
   "devDependencies": {
     "@testing-library/react": "^9.5.0",
     "prettier": "2.0.4",
+    "react-select-event": "^4.1.4",
     "react-test-renderer": "^16.13.1"
   }
 }

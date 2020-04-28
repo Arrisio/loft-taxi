@@ -9,9 +9,9 @@ import {
 
 
 const addresses = handleActions({
-    [fetchAddressListRequest]: () => null,
+    [fetchAddressListRequest]: () => [],
     [fetchAddressListSuccess]: (_state, action) => action.payload.addresses,
-    [fetchAddressListFailure]: () => null,
+    [fetchAddressListFailure]: () => [],
 }, []);
 
 const error = handleActions({

@@ -32,7 +32,6 @@ describe("intro page", () => {
 
     it("can toggle to signup form", () => {
         fireEvent.click(getByTestId("linkGotoSignUp"));
-        debugger
         expect(queryByTestId("formSignIn")).toBeFalsy();
         expect(getByTestId("formSignUp")).toBeTruthy();
     })

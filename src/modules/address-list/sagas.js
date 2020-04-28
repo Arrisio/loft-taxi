@@ -14,10 +14,13 @@ export function* fetchAddressList(action) {
     try {
         yield put(privateActions.fetchAddressListRequest());
         const res = yield call(api.fetchAddressList);
-        const newState = {...action.payload, ...res}
-        yield put(privateActions.fetchAddressListSuccess(newState));
+        console.log('adderesses')
+        console.log(res)
+        if (res.length < 1) throw new Error('no adderessed fetched from server')
 
-    } catch (e) {
-        yield put(privateActions.fetchAddressListFailure(e));
+        yield put(privateActions.fetchAddressListSuccess( res));
+
+    } catch (error) {
+        yield put(privateActions.fetchAddressListFailure({error: error.message}));
     }
 }
