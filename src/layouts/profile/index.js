@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {Grid, Paper} from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import PaymentForm from './payment-form';
+import CardSavedSuccess from "./card-saved-success";
 import backImage from "../../assets/img/login-background.jpg";
 import MainPage from "../../components/main-page-wrapper";
 
@@ -16,7 +17,9 @@ const styles = () => ({
 });
 
 
-const Profile = ({classes}) => {
+const Profile = ({classes, flagCardSavedSuccessMsgInit = false}) => {
+    const [flagCardSavedSuccessMsg, setFlagCardSavedSuccessMsg] = useState(flagCardSavedSuccessMsgInit);
+
     return (
         <MainPage>
             <Paper className={classes.root} data-testid="profile">
@@ -32,7 +35,11 @@ const Profile = ({classes}) => {
                         justify="center"
                         alignItems="center"
                     >
-                        <PaymentForm/>
+                        {(flagCardSavedSuccessMsg)
+                            ? <CardSavedSuccess/>
+                            : <PaymentForm confirmCardSaved={() => {
+                                setFlagCardSavedSuccessMsg(true)
+                            }}/>}
                     </Grid>
                 </Grid>
             </Paper>

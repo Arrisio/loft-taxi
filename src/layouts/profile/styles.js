@@ -1,6 +1,7 @@
 export const styles = () => ({
     paper: {
         padding: '44px 60px',
+
     },
     subtitle: {
         color: 'rgba(0, 0, 0, 0.54)',
@@ -18,3 +19,4 @@ export const styles = () => ({
         marginTop: '30px',
     },
 });
+export default styles;
