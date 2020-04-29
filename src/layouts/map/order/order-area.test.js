@@ -48,7 +48,7 @@ describe("form area", () => {
         expect(getByTestId("order-form")).toBeTruthy();
     })
 
-    it("renders order form if card received",  () => {
+    it("renders message if card saved",  () => {
         const {getByTestId, queryByTestId, getByText} =  renderWithProviders(
             <OrderArea flagOrderSuccessMsgInit={true}/> ,
             createStore(rootReducer, {card:{isPaymentMethodReceived: true}})
