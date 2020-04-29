@@ -74,14 +74,21 @@ describe("order form ", () => {
                         card_number: '0000 0000 0000 0000',
                         card_date: '12/12',
                         card_name: 'vasia',
-                        // card_cvc: '123'
+                        card_cvc: '123'
                     }
                 }
             )
         });
-        expect(saveCard).not.toHaveBeenCalled()
-        wait(() => {
+        // expect(saveCard).not.toHaveBeenCalled()
+        // setTimeout(function() {
+        //     expect(confirmCardSaved).not.toHaveBeenCalled(); },
+        //     5000
+        // );
+        waitFor(() => {
             expect(confirmCardSaved).not.toHaveBeenCalled()
+        }, {
+            interval: 10000,
+            timeout: 10000,
         });
     });
 });

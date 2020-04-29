@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/dom": "^7.2.2",
     "@testing-library/react": "^9.5.0",
     "prettier": "2.0.4",
     "react-select-event": "^4.1.4",
