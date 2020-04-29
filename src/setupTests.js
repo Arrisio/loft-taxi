@@ -10,4 +10,3 @@ jest.mock('mapbox-gl/dist/mapbox-gl', () => ({
     })),
     NavigationControl: jest.fn()
 }));
-

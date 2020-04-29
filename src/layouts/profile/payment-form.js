@@ -1,91 +1,19 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import NumberFormat from 'react-number-format';
-import {
-    Grid,
-    Card,
-    TextField,
-    Typography,
-    Paper,
-    Button,
-} from '@material-ui/core';
+import {Button, Card, Grid, Paper, TextField, Typography,} from '@material-ui/core';
 import {DatePicker} from '@material-ui/pickers';
 import {withStyles} from '@material-ui/core/styles';
 import {MCIcon} from 'loft-taxi-mui-theme';
 import {connect} from 'react-redux';
 
-import {
-    fetchCard,
-    saveCard,
-    getCardCvc,
-    getCardExpiryDate,
-    getCardId,
-    getCardName,
-    getCardNumber
-} from '../../../modules/card';
-import {getToken} from '../../../modules/auth';
-
-const styles = () => ({
-    paper: {
-        padding: '44px 60px',
-    },
-    subtitle: {
-        color: 'rgba(0, 0, 0, 0.54)',
-        marginBottom: '30px',
-    },
-    card: {
-        padding: '20px 30px',
-        display: 'flex',
-        flexDirection: 'column',
-        width: '320px',
-        height: '210px',
-        position: 'relative',
-    },
-    button: {
-        marginTop: '30px',
-    },
-});
-
-const CardNumberFormat = (props) => {
-    const {inputRef, onChange, ...rest} = props;
-    return (
-        <NumberFormat
-            {...rest}
-            onValueChange={(values) => {
-                onChange({
-                    target: {
-                        name: props.name,
-                        value: values.value,
-                    },
-                });
-            }}
-            format="#### #### #### ####"
-            mask="_"
-        />
-    );
-};
-const CardCVCFormat = (props) => {
-    const {inputRef, onChange, ...rest} = props;
-    return (
-        <NumberFormat
-            {...rest}
-            onValueChange={(values) => {
-                onChange({
-                    target: {
-                        name: props.name,
-                        value: values.value,
-                    },
-                });
-            }}
-            format="###"
-            mask="_"
-        />
-    );
-};
+import {fetchCard, getCardCvc, getCardExpiryDate, getCardName, getCardNumber, saveCard} from '../../modules/card';
+import {getToken} from '../../modules/auth';
+import {CardNumberFormat} from "./card-number-format";
+import {CardCVCFormat} from "./card-cvc-format";
+import {styles} from "./styles";
 
 
-const PaymentForm = ({classes, token, saveCard, cvc, expiryDate, cardId, cardName, cardNumber}) => {
-    // const [selectedDate, handleDateChange] = useState(expiryDate || new Date());
+export const PaymentForm = ({classes, token, saveCard, cvc, expiryDate, cardName, cardNumber, confirmCardSaved}) => {
     const [formCardName, setFormCardName] = useState(cardName);
     const [formCardNumber, setFormCardNumber] = useState(cardNumber);
     const [formCvc, setFormCvc] = useState(cvc);
@@ -101,6 +29,7 @@ const PaymentForm = ({classes, token, saveCard, cvc, expiryDate, cardId, cardNam
             cvc: formCvc,
             token
         });
+        confirmCardSaved();
     };
 
     return (
@@ -111,7 +40,7 @@ const PaymentForm = ({classes, token, saveCard, cvc, expiryDate, cardId, cardNam
             <Typography align="center" className={classes.subtitle}>
                 Способ оплаты
             </Typography>
-            <form onSubmit={handlerSubmit}>
+            <form onSubmit={handlerSubmit} data-testid="save-card-form">
                 <Grid container justify="center" spacing={4}>
                     <Grid item>
                         <Card className={classes.card} elevation={3}>
@@ -123,9 +52,10 @@ const PaymentForm = ({classes, token, saveCard, cvc, expiryDate, cardId, cardNam
                                 placeholder="0000 0000 0000 0000"
                                 required
                                 margin="normal"
-                                // InputProps={{
-                                //     inputComponent: CardNumberFormat,
-                                // }}
+                                InputProps={{
+                                    inputComponent: CardNumberFormat,
+                                }}
+                                InputLabelProps={{ shrink: true }}
                                 value={formCardNumber}
                                 onChange={e => setFormCardNumber(e.target.value)}
                             />
@@ -160,14 +90,15 @@ const PaymentForm = ({classes, token, saveCard, cvc, expiryDate, cardId, cardNam
                                 name="card_cvc"
                                 label="CVC"
                                 placeholder="CVC"
-                                // required
+                                required
                                 margin="normal"
                                 type="password"
-                                // InputProps={{
-                                //     inputComponent: CardCVCFormat,
-                                // }}
+                                InputProps={{
+                                    inputComponent: CardCVCFormat,
+                                }}
                                 value={formCvc}
                                 onChange={e => setFormCvc(e.target.value)}
+                                InputLabelProps={{ shrink: true }}
                             />
                         </Card>
                     </Grid>
@@ -197,7 +128,6 @@ const mapStateToProps = state => ({
     token: getToken(state),
     cvc: getCardCvc(state),
     expiryDate: getCardExpiryDate(state),
-    cardId: getCardId(state),
     cardName: getCardName(state),
     cardNumber: getCardNumber(state),
 })

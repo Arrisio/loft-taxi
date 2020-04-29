@@ -10,14 +10,13 @@ import {
     fetchCardSuccess
 } from "./actions-private";
 
+const isPaymentMethodReceived = handleActions({
+    [saveCardSuccess]: () => true,
 
-const id = handleActions({
-    [saveCardSuccess]: (_state, action) => action.payload.id,
-
-    [fetchCardFaliure]: () => null,
-    [fetchCardRequest]: () => null,
-    [fetchCardSuccess]: (_state, action) => action.payload.id,
-}, null);
+    [fetchCardFaliure]: () => false,
+    [fetchCardRequest]: () => false,
+    [fetchCardSuccess]: () => true,
+}, false);
 
 const cardNumber = handleActions({
     [saveCardSuccess]: (_state, action) => action.payload.cardNumber,
@@ -53,5 +52,5 @@ const cvc = handleActions({
 
 
 export default combineReducers({
-    id, cardName, cvc, expiryDate, cardNumber,
+    cardName, cvc, expiryDate, cardNumber, isPaymentMethodReceived
 })

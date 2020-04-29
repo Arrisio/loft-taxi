@@ -1,20 +1,19 @@
 import React, {createContext} from "react";
 
-import { Router } from 'react-router-dom'
-import { createMemoryHistory } from 'history'
-import { render, fireEvent,waitFor, wait } from '@testing-library/react'
+import { MemoryRouter as Router} from 'react-router-dom'
+
+import {act, render, fireEvent, waitFor, wait} from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
 import App from "./index";
 
 
 const initTestQueries = () => {
-    const history = createMemoryHistory ();
-    const {getByTestId, queryByTestId } = render(
-        <Router history={history}>
+    const {getByTestId, queryByTestId} = render(
+        <Router >
             <App/>
         </Router>
-        );
+    );
     return [getByTestId, queryByTestId]
 }
 
@@ -33,7 +32,6 @@ describe("intro page", () => {
 
     it("can toggle to signup form", () => {
         fireEvent.click(getByTestId("linkGotoSignUp"));
-        debugger
         expect(queryByTestId("formSignIn")).toBeFalsy();
         expect(getByTestId("formSignUp")).toBeTruthy();
     })
@@ -47,23 +45,22 @@ describe("intro page", () => {
     })
 });
 
-describe("auth", () => {
+describe("auth",  () => {
     let getByTestId, queryByTestId;
     beforeEach(async () => {
         [getByTestId, queryByTestId] = initTestQueries();
-        fireEvent.submit(getByTestId('formSignIn'), { target: { username: 'test@df', password: '123' } });
+        wait(() => {fireEvent.submit(getByTestId('formSignIn'), {target: {username: 'test@df', password: '123'}})});
     })
 
     it("signin", async () => {
-        wait(() =>  expect(queryByTestId("introPage")).toBeFalsy());
-        wait(() =>  expect(getByTestId("mainPage")).toBeTruthy());
+        wait(() => expect(queryByTestId("introPage")).toBeFalsy());
+        wait(() => expect(getByTestId("mainPage")).toBeTruthy());
     })
 
     it("signout", async () => {
-            wait(() =>  fireEvent.click(getByTestId("btnSignOut")));
-            wait(() =>  expect(queryByTestId("introPage")).toBeTruthy());
-            wait(() =>  expect(queryByTestId("mainPage")).toBeFalsy());
-        }
-        )
+        wait(() => {fireEvent.click(getByTestId("btnSignOut"))});
+        wait(() => expect(queryByTestId("introPage")).toBeTruthy());
+        wait(() => expect(queryByTestId("mainPage")).toBeFalsy());
     })
+})
 
