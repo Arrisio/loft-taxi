@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {withRouter, Link as RouterLink} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {useForm } from 'react-hook-form';
 
 import {
     Grid,
@@ -28,18 +29,16 @@ const styles = () => ({
 });
 
 const SignInForm = ({classes, signIn, history}) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const {register, handleSubmit, error} = useForm();
 
-    const signInHandler = e => {
-        e.preventDefault();
+    const signInHandler = ({email,password }) => {
         signIn({email, password});
     }
 
     return (
         <IntroPage>
         <Paper className={classes.paper}>
-            <form onSubmit={signInHandler} data-testid="formSignIn">
+            <form onSubmit={handleSubmit(signInHandler)} data-testid="formSignIn">
                 <Grid container direction="column">
                     <Typography
                         component="h1"
@@ -51,16 +50,15 @@ const SignInForm = ({classes, signIn, history}) => {
                     </Typography>
                     <Typography align="left">
                         Новый пользователь?{' '}
-                        {/*<Link*/}
-                        {/*    align="left"*/}
-                        {/*    underline="none"*/}
-                        {/*    // to="/signup"*/}
-                        {/*    data-testid="linkGotoSignUp"*/}
-                        {/*>*/}
-                            <RouterLink to="/signup" data-testid="linkGotoSignUp">
+                        <Link
+                            align="left"
+                            underline="none"
+                            to="/signup"
+                            data-testid="linkGotoSignUp"
+                            component={RouterLink}
+                        >
                                 Зарегистрируйтесь
-                            </RouterLink>
-                        {/*</Link>*/}
+                        </Link>
                     </Typography>
                     <FormControl required>
                         <InputLabel htmlFor="username">
@@ -68,14 +66,12 @@ const SignInForm = ({classes, signIn, history}) => {
                         </InputLabel>
                         <Input
                             className={classes.input}
-                            id="username"
+                            id="email"
                             name="email"
-                            type="text"
+                            type="email"
                             placeholder="Имя пользователя"
-                            required
                             inputProps={{"data-testid": "inputLoginName"}}
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
+                            inputRef={register}
                         />
                     </FormControl>
                     <FormControl required>
@@ -88,8 +84,7 @@ const SignInForm = ({classes, signIn, history}) => {
                             placeholder="Пароль"
                             required
                             inputProps={{"data-testid": "inputPassword"}}
-                            onChange={e => setPassword(e.target.value)}
-                            value={password}
+                            inputRef={register}
                         />
                     </FormControl>
                     <Grid align="right">

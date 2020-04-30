@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link as RouterLink, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {useForm } from 'react-hook-form';
 
 import {
     Grid,
@@ -27,21 +28,17 @@ const styles = () => ({
     },
 });
 const SignUpForm = ({classes, signUp, history}) => {
+    const {register, handleSubmit, error} = useForm();
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
-
-    const signUpHandler = e => {
-        e.preventDefault();
+    const signUpHandler = ({name, surname, email, password}) => {
+        console.log(email)
         signUp({name, surname, email, password})
     }
 
     return (
         <IntroPage>
             <Paper className={classes.paper}>
-                <form onSubmit={signUpHandler} data-testid="formSignUp">
+                <form onSubmit={handleSubmit(signUpHandler)} data-testid="formSignUp">
                     <Grid container direction="column">
                         <Typography
                             component="h1"
@@ -68,8 +65,7 @@ const SignUpForm = ({classes, signUp, history}) => {
                                 type="email"
                                 placeholder="Адрес электронной почты"
                                 required
-                                value={email}
-                                onChange={e => setEmail(e.target.value)}
+                                inputRef={register}
                             />
                         </FormControl>
                         <Grid>
@@ -77,26 +73,24 @@ const SignUpForm = ({classes, signUp, history}) => {
                                 <InputLabel htmlFor="firstname">Имя</InputLabel>
                                 <Input
                                     className={classes.input}
-                                    id="firstname"
-                                    name="firstname"
+                                    id="name"
+                                    name="name"
                                     type="text"
                                     placeholder="Имя"
                                     required
-                                    value={name}
-                                    onChange={e => setName(e.target.value)}
+                                    inputRef={register}
                                 />
                             </FormControl>
                             <FormControl required>
                                 <InputLabel htmlFor="lastname">Фамилия</InputLabel>
                                 <Input
                                     className={classes.input}
-                                    id="lastname"
-                                    name="lastname"
+                                    id="surname"
+                                    name="surname"
                                     type="text"
                                     placeholder="Фамилия"
                                     required
-                                    value={surname}
-                                    onChange={e => setSurname(e.target.value)}
+                                    inputRef={register}
                                 />
                             </FormControl>
                         </Grid>
@@ -106,13 +100,12 @@ const SignUpForm = ({classes, signUp, history}) => {
                             </InputLabel>
                             <Input
                                 className={classes.input}
-                                id="signup_password"
-                                name="signup_password"
+                                id="password"
+                                name="password"
                                 type="password"
                                 placeholder="Пароль"
                                 required
-                                onChange={e => setPassword(e.target.value)}
-                                value={password}
+                                inputRef={register}
                             />
                         </FormControl>
                         <Grid align="right">
