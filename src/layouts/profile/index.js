@@ -17,9 +17,8 @@ const styles = () => ({
 });
 
 
-const Profile = ({classes, flagCardSavedSuccessMsgInit = false}) => {
+export const Profile = ({classes, flagCardSavedSuccessMsgInit = false}) => {
     const [flagCardSavedSuccessMsg, setFlagCardSavedSuccessMsg] = useState(flagCardSavedSuccessMsgInit);
-
     return (
         <MainPage>
             <Paper className={classes.root} data-testid="profile">

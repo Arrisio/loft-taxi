@@ -1,7 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {Button, Card, Grid, Paper, TextField, Typography,} from '@material-ui/core';
 import {DatePicker} from '@material-ui/pickers';
+import NumberFormat from 'react-number-format';
+import moment from 'moment'
 import {withStyles} from '@material-ui/core/styles';
 import {MCIcon} from 'loft-taxi-mui-theme';
 import {connect} from 'react-redux';
@@ -9,14 +11,11 @@ import {useForm, Controller} from 'react-hook-form';
 
 import {fetchCard, getCardCvc, getCardExpiryDate, getCardName, getCardNumber, saveCard} from '../../modules/card';
 import {getToken} from '../../modules/auth';
-// import CustomNumberFormat from "./card-number-format";
-// import {CardCVCFormat} from "./card-cvc-format";
+
+
 import {styles} from "./styles";
 
-import NumberFormat from 'react-number-format';
-import moment from 'moment'
 
-// export const PaymentForm = ({classes, token, saveCard: saveCardOnServer, cvc, expiryDate, cardName, cardNumber, confirmCardSaved}) => {
 const PaymentForm = ({
                          classes,
                          token,
@@ -33,9 +32,8 @@ const PaymentForm = ({
         saveCard({cardNumber, expiryDate: expiryDate.format('MM/YY'), cardName: cardName.toUpperCase(), cvc, token});
         confirmCardSaved();
     };
-    const CardNumberFormat = (props) => {
-        const {inputRef, onChange, ...rest} = props;
-        // debugger
+
+    const CardNumberFormat = ({inputRef, onChange, ...rest}) => {
         return (
             <NumberFormat
                 {...rest}
@@ -47,8 +45,7 @@ const PaymentForm = ({
             />
         );
     };
-    const CardCVCFormat = (props) => {
-        const {inputRef, onChange, ...rest} = props;
+    const CardCVCFormat = ({inputRef, onChange, ...rest}) => {
         return (
             <NumberFormat
                 {...rest}
@@ -60,7 +57,6 @@ const PaymentForm = ({
             />
         );
     };
-
 
     return (
         <Paper className={classes.paper}>
@@ -86,7 +82,6 @@ const PaymentForm = ({
                                 defaultValue={cardNumber}
                                 InputProps={{
                                     inputComponent: CardNumberFormat,
-                                    par:'q'
                                 }}
                                 InputLabelProps={{shrink: true}}
                                 rules={{minLength: 16}}
@@ -127,7 +122,7 @@ const PaymentForm = ({
                                 required
                                 defaultValue={cardName}
                                 InputLabelProps={{shrink: true}}
-                                rules={{ pattern: /^[a-zA-Z]+\s[a-zA-Z]+$/}}
+                                rules={{pattern: /^[a-zA-Z]+\s[a-zA-Z]+$/}}
                                 error={!!errors.cardName}
                                 helperText={
                                     errors.cardName && 'формат KHREN PETROV'
