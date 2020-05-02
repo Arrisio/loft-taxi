@@ -27,7 +27,7 @@ const Header = ({history, signOut, classes }) => {
                 <Container className={classes.logo}>
                     <Logo />
                 </Container>
-                <Button data-testid="btnGotoMap" onClick={() => {history.push('/map')}}>Карта</Button>
+                <Button data-testid="btnGotoMap" onClick={() => {history.push('/map-area')}}>Карта</Button>
                 <Button data-testid="btnGotoProfile" onClick={()=> {history.push('/profile')}}>Профиль</Button>
                 <Button data-testid="btnSignOut" onClick={signOut}>Выйти</Button>
             </Toolbar>

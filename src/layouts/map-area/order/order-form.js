@@ -16,6 +16,8 @@ export const OrderForm = ({ classes, fetchRoute, addresses, confirmHandler, clea
         (addressFrom && addressTo)
             ? fetchRoute({address1:addressFrom.value, address2:addressTo.value})
             : clearRoute()
+
+        return ()=>{clearRoute()}
     },
         [addressFrom, addressTo]
     )

@@ -4,7 +4,7 @@ import { Container, Grid, Button, Typography, Paper } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { getIsPaymentMethodReceived } from '../../../modules/card';
 import OrderForm from './order-form';
-import NeedCard from "./need-card";
+import NeedCard from "./need-card-msg";
 import OrderSuccess from "./order-success";
 import styles from './styles';
 

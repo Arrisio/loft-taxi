@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
-import { Link as RouterLink, withRouter } from "react-router-dom";
+import React  from "react";
+import { Link as RouterLink } from "react-router-dom";
 import withStyles from '@material-ui/core/styles/withStyles';
-import { Container, Paper, Box, Typography, Button } from "@material-ui/core/";
+import {Grid,  Paper, Typography, Button } from "@material-ui/core/";
 import styles from './styles'
-import {Grid} from "@material-ui/core";
 
 
-
-const NeedCard = ({classes}) => (
+const NeedCardMsg = ({classes}) => (
     <Paper className={classes.paper}>
         <Grid container direction="column">
             <Typography
@@ -36,4 +34,4 @@ const NeedCard = ({classes}) => (
 );
 
 
-export default withStyles(styles)(NeedCard);
+export default withStyles(styles)(NeedCardMsg);

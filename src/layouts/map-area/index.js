@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import MainPage from "../../components/main-page-wrapper";
-import MapArea from "./map-elt";
+import Map from "./map";
 import OrderArea from "./order/order-area"
 
 
@@ -12,12 +12,12 @@ const styles = {
     // position: 'absolute',
 };
 
-const Map = () => (
+const MapArea = () => (
         <MainPage data-testid="map">
-            <MapArea/>
+            <Map/>
             <OrderArea/>
         </MainPage>
         )
 ;
 
-export default Map;
+export default MapArea;
