@@ -15,7 +15,7 @@ import {
 } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import IntroPage from "../../components/intro-page-wrapper";
+import IntroPage from "../../components/introPageWrapper";
 import {signIn} from '../../modules/auth'
 
 

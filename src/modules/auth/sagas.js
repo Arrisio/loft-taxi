@@ -1,11 +1,11 @@
 import {takeLatest, put, call, fork, spawn} from "redux-saga/effects";
 
-import * as publicActions from './actions-public';
-import * as privateActions from './actions-private';
+import * as publicActions from './actionsPublic';
+import * as privateActions from './actionsPrivate';
 import * as api from './api'
 
 import {fetchCard} from '../card/sagas';
-import {fetchAddressList} from '../address-list/sagas';
+import {fetchAddressList} from '../addressList/sagas';
 
 export default function* watcher() {
     yield takeLatest(publicActions.signIn, signIn);

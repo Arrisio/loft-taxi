@@ -8,7 +8,7 @@ import {
     fetchCardFaliure,
     fetchCardRequest,
     fetchCardSuccess
-} from "./actions-private";
+} from "./actionsPrivate";
 
 const isPaymentMethodReceived = handleActions({
     [saveCardSuccess]: () => true,

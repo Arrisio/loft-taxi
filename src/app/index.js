@@ -5,11 +5,11 @@ import {Route, Switch, Redirect} from 'react-router-dom';
 
 import createStore from './store';
 import {signOut} from '../modules/auth'
-import AuthRoute from "./auth-route";
-import MapArea from "../layouts/map-area";
+import AuthRoute from "./authRoute";
+import MapArea from "../layouts/mapArea";
 import Profile from "../layouts/profile";
-import SignInForm from "../layouts/sign-in-form";
-import SignUpForm from "../layouts/sign-up-form";
+import SignInForm from "../layouts/signInForm";
+import SignUpForm from "../layouts/signUpForm";
 
 
 const store = createStore();

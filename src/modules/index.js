@@ -3,7 +3,7 @@ import {fork} from "redux-saga/effects";
 
 import {sagas as authSagas, reducer as authReducer} from './auth';
 import {sagas as cardSagas, reducer as cardReducer} from './card'
-import {sagas as addressListSagas, reducer as addressListReducer} from './address-list'
+import {sagas as addressListSagas, reducer as addressListReducer} from './addressList'
 import {sagas as routeSaga, reducer as routeReducer} from './route'
 
 function* rootSaga() {

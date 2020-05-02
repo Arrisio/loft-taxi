@@ -5,9 +5,9 @@ import {
     fetchRoutFailure,
     fetchRoutRequest,
     fetchRoutSuccess
-} from "./actions-private";
+} from "./actionsPrivate";
 
-import { clearRoute } from './actions-public'
+import { clearRoute } from './actionsPublic'
 
 const route = handleActions({
     [clearRoute]: () => null,

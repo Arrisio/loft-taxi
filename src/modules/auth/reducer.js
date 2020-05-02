@@ -9,7 +9,7 @@ import {
     signInRequest,
     signUpRequest,
     signOutSuccess,
-} from "./actions-private";
+} from "./actionsPrivate";
 
 const isLoggedIn = handleActions({
     [signInSuccess]: () => true,

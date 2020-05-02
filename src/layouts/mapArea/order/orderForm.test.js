@@ -8,8 +8,8 @@ import {rootReducer} from '../../../modules'
 
 import {createStore} from 'redux'
 
-import {OrderForm} from "./order-form";
-import {renderWithProviders} from '../../../utils/test-utils'
+import {OrderForm} from "./orderForm";
+import {renderWithProviders} from '../../../utils/testUtils'
 
 
 const store = createStore(rootReducer, {})

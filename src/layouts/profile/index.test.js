@@ -3,9 +3,9 @@ import '@testing-library/jest-dom/extend-expect'
 import {act, render, fireEvent, waitFor, wait} from '@testing-library/react'
 
 import {Profile} from "./index";
-import PaymentForm from "./payment-form";
+import PaymentForm from "./paymentForm";
 import Header from "../../components/header"
-import CardSavedSuccess from "./card-saved-success";
+import CardSavedSuccess from "./cardSavedSuccess";
 
 // const mockedModules = ["./card-saved-success","../../components/header","./payment-form" ]
 

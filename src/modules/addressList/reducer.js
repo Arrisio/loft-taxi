@@ -5,7 +5,7 @@ import {
     fetchAddressListFailure,
     fetchAddressListRequest,
     fetchAddressListSuccess
-} from "./actions-private";
+} from "./actionsPrivate";
 
 
 const addresses = handleActions({

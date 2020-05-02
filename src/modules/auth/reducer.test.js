@@ -7,7 +7,7 @@ import {
     signInRequest,
     signUpRequest,
     signOutSuccess,
-} from "./actions-private";
+} from "./actionsPrivate";
 
 describe ('auth reducer', ()=>{
     const initState = {

@@ -5,7 +5,7 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 
-import { drawRoute } from './draw-route';
+import { drawRoute } from './drawRoute';
 import {getRoute} from '../../modules/route'
 
 const styles = {

@@ -16,7 +16,7 @@ import {
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import {signUp} from "../../modules/auth";
-import IntroPage from "../../components/intro-page-wrapper";
+import IntroPage from "../../components/introPageWrapper";
 
 const styles = () => ({
     paper: {

@@ -1,24 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import Select from 'react-select';
-import { connect } from 'react-redux';
-import { Grid, FormControl, Button, Paper } from '@material-ui/core';
+import {connect} from 'react-redux';
+import {Grid, FormControl, Button, Paper} from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { getAddressList } from '../../../modules/address-list';
-import { fetchRoute, clearRoute } from '../../../modules/route';
+import {getAddressList} from '../../../modules/addressList';
+import {fetchRoute, clearRoute} from '../../../modules/route';
 import styles from './styles'
 
 
-export const OrderForm = ({ classes, fetchRoute, addresses, confirmHandler, clearRoute }) => {
+export const OrderForm = ({classes, fetchRoute, addresses, confirmHandler, clearRoute}) => {
     const [addressFrom, setAddressFrom] = useState(null);
     const [addressTo, setAddressTo] = useState(null);
 
     useEffect(() => {
-        (addressFrom && addressTo)
-            ? fetchRoute({address1:addressFrom.value, address2:addressTo.value})
-            : clearRoute()
+            (addressFrom && addressTo)
+                ? fetchRoute({address1: addressFrom.value, address2: addressTo.value})
+                : clearRoute()
 
-        return ()=>{clearRoute()}
-    },
+            return () => {
+                clearRoute()
+            }
+        },
         [addressFrom, addressTo]
     )
 
@@ -26,12 +28,12 @@ export const OrderForm = ({ classes, fetchRoute, addresses, confirmHandler, clea
     let addressListFrom = addresses
         .filter((item) => (addressTo ? item !== addressTo.value : true))
         .map((item) => {
-            return { label: item, value: item };
+            return {label: item, value: item};
         });
     let addressListTo = addresses
         .filter((item) => (addressFrom ? item !== addressFrom.value : true))
         .map((item) => {
-            return { label: item, value: item };
+            return {label: item, value: item};
         });
 
     const makeOrder = e => {
@@ -40,14 +42,14 @@ export const OrderForm = ({ classes, fetchRoute, addresses, confirmHandler, clea
     };
 
     return (
-       <Paper className={classes.paper}>
+        <Paper className={classes.paper}>
             <form
                 id="order-form"
                 data-testid="order-form"
                 onSubmit={makeOrder}
             >
                 <Grid container direction="column">
-                    <FormControl className={classes.fromControl} >
+                    <FormControl className={classes.fromControl}>
                         <Select
                             name="address_from"
                             placeholder="Откуда"

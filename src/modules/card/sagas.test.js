@@ -2,10 +2,10 @@
 import * as sagas from "./sagas";
 import {runSaga} from "redux-saga";
 import {call, fork, put} from "redux-saga/effects";
-import * as publicActions from './actions-public';
-import * as privateActions from './actions-private';
+import * as publicActions from './actionsPublic';
+import * as privateActions from './actionsPrivate';
 import * as api from './api';
-import {recordSaga} from '../../utils/test-utils'
+import {recordSaga} from '../../utils/testUtils'
 
 describe("Card sagas", () => {
     describe("fetch card ", () => {

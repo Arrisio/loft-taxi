@@ -1,4 +1,4 @@
 export { default as reducer} from './reducer';
 export * from './selectors';
-export * from './actions-public';
+export * from './actionsPublic';
 export { default as sagas } from "./sagas";
