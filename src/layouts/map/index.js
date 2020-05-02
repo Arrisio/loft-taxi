@@ -12,8 +12,6 @@ const styles = {
     // position: 'absolute',
 };
 
-// const Map = ({ handlerNavigation }) => <div data-testid="map"> </div>;
-
 const Map = () => (
         <MainPage data-testid="map">
             <MapArea/>

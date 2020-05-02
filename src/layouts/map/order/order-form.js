@@ -4,16 +4,19 @@ import { connect } from 'react-redux';
 import { Grid, FormControl, Button, Paper } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { getAddressList } from '../../../modules/address-list';
-import { fetchRoute } from '../../../modules/route';
+import { fetchRoute, clearRoute } from '../../../modules/route';
 import styles from './styles'
 
 
-export const OrderForm = ({ classes, fetchRoute, addresses, confirmHandler }) => {
+export const OrderForm = ({ classes, fetchRoute, addresses, confirmHandler, clearRoute }) => {
     const [addressFrom, setAddressFrom] = useState(null);
     const [addressTo, setAddressTo] = useState(null);
 
     useEffect(() => {
-        (addressFrom && addressTo) && fetchRoute({address1:addressFrom.value, address2:addressTo.value})
+        (addressFrom && addressTo)
+            ? fetchRoute({address1:addressFrom.value, address2:addressTo.value})
+            : clearRoute()
+        // fetchRoute({address1:addressFrom.value, address2:addressTo.value})
     },
         [addressFrom, addressTo]
     )
@@ -87,6 +90,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = {
     fetchRoute,
+    clearRoute
 };
 
 export default connect(
