@@ -47,7 +47,7 @@ describe("Auth saga", () => {
             expect(dispatched).toContainEqual(privateActions.signInRequest());
             expect(api.signIn).toHaveBeenCalled();
             expect(api.signIn).toHaveBeenCalledWith(action.payload);
-            expect(dispatched).toContainEqual(privateActions.signInFaliure(res.error));
+            expect(dispatched).toContainEqual(privateActions.signInFaliure({error: res.error}));
         });
 
     });
