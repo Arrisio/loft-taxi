@@ -16,7 +16,7 @@ import {getToken} from '../../modules/auth';
 import {styles} from "./styles";
 
 
-const PaymentForm = ({
+export const PaymentForm = ({
                          classes,
                          token,
                          cardNumber,

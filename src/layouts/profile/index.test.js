@@ -26,13 +26,13 @@ import CardSavedSuccess from "./cardSavedSuccess";
 //         }))
 // };
 
-jest.mock("./payment-form" , () => ({
+jest.mock("./paymentForm" , () => ({
     __esModule: true,
     namedExport: jest.fn(),
     default: jest.fn()
 }));
 
-jest.mock("./card-saved-success", () => ({
+jest.mock("./cardSavedSuccess", () => ({
     __esModule: true,
     namedExport: jest.fn(),
     default: jest.fn()

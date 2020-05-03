@@ -3,11 +3,9 @@ import selectEvent from 'react-select-event'
 
 import {act, render, fireEvent, waitFor, wait} from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-
-import {rootReducer} from '../../modules/'
-
 import {createStore} from 'redux'
 
+import {rootReducer} from '../../modules/'
 import {PaymentForm} from "./paymentForm";
 import {renderWithProviders, renderWithTheme} from '../../utils/testUtils'
 
