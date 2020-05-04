@@ -2,7 +2,6 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import createSagaMiddleware from "redux-saga";
 
 import  {rootReducer, rootSaga} from '../modules';
-import {fetchRoute} from '../modules/route'
 
 const loadStateFromLocalStorage = () => {
     try {

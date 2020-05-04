@@ -5,11 +5,11 @@ import {Route, Switch, Redirect} from 'react-router-dom';
 
 import createStore from './store';
 import {signOut} from '../modules/auth'
-import AuthRoute from "./auth-route";
-import Map from "../layouts/map";
+import AuthRoute from "./authRoute";
+import MapArea from "../layouts/mapArea";
 import Profile from "../layouts/profile";
-import SignInForm from "../layouts/sign-in-form";
-import SignUpForm from "../layouts/sign-up-form";
+import SignInForm from "../layouts/signInForm";
+import SignUpForm from "../layouts/signUpForm";
 
 
 const store = createStore();
@@ -20,7 +20,7 @@ const App = () => (
             <AuthRoute path="/signin" exact authType="identity-page" component={SignInForm}/>
             <AuthRoute path="/signup" exact authType="identity-page" component={SignUpForm}/>
 
-            <AuthRoute path="/(map)?" exact component={Map}/>
+            <AuthRoute path="/(map)?" exact component={MapArea}/>
             <AuthRoute path="/profile" exact component={Profile}/>
 
             <Route path="/signout" exact render={({history}) => {

@@ -5,7 +5,7 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 
-import { drawRoute } from './draw-route';
+import { drawRoute } from './drawRoute';
 import {getRoute} from '../../modules/route'
 
 const styles = {
@@ -14,7 +14,7 @@ const styles = {
     position: 'absolute',
 };
 
-const MapElt = ({ route }) => {
+const Map = ({ route }) => {
     const [map, setMap] = useState(null);
     const mapContainerRef = useRef(null);
 
@@ -72,4 +72,4 @@ const mapStateToProps = state => ({
     route: getRoute(state)
 });
 
-export default connect(mapStateToProps, null)(MapElt);
+export default connect(mapStateToProps, null)(Map);

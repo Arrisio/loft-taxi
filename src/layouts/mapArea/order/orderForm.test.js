@@ -8,8 +8,8 @@ import {rootReducer} from '../../../modules'
 
 import {createStore} from 'redux'
 
-import {OrderForm} from "./order-form";
-import {renderWithProviders} from '../../../utils/test-utils'
+import {OrderForm} from "./orderForm";
+import {renderWithProviders} from '../../../utils/testUtils'
 
 
 const store = createStore(rootReducer, {})
@@ -24,6 +24,7 @@ describe("order form ", () => {
             fetchRoute={jest.fn()}
             addresses={[]}
             confirmHandler={jest.fn()}
+            clearRoute={jest.fn()}
         />);
         expect(getByTestId("order-form")).toBeTruthy();
         expect(getByText("Откуда")).toBeTruthy();
@@ -40,6 +41,7 @@ describe("order form ", () => {
             fetchRoute={jest.fn()}
             addresses={['addr1', 'addr2', 'addr3']}
             confirmHandler={confirmHandler}
+            clearRoute={jest.fn()}
         />);
         const fromAddrField = getByText("Откуда");
         const toAddrField = getByText("Куда");
@@ -71,6 +73,7 @@ describe("order form ", () => {
             fetchRoute={jest.fn()}
             addresses={['addr1', 'addr2', 'addr3']}
             confirmHandler={confirmHandler}
+            clearRoute={jest.fn()}
         />);
 
         const toAddrField = getByText("Куда");

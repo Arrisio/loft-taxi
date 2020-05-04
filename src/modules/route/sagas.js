@@ -1,7 +1,7 @@
 import {takeLatest, put, call, fork} from "redux-saga/effects";
 
-import * as publicActions from './actions-public';
-import * as privateActions from './actions-private';
+import * as publicActions from './actionsPublic';
+import * as privateActions from './actionsPrivate';
 import * as api from './api'
 
 
@@ -11,12 +11,15 @@ export default function* watcher() {
 
 export function* fetchRoute({payload}) {
     try {
+        if (!payload.address1 || !payload.address2){
+            yield put(publicActions.clearRoute)
+            return
+        }
         yield put(privateActions.fetchRoutRequest(payload));
         const res = yield call(api.fetchRout, payload);
-        const newState = {route:res}
-        yield put(privateActions.fetchRoutSuccess(newState));
+        yield put(privateActions.fetchRoutSuccess({route:res}));
 
-    } catch (e) {
-        yield put(privateActions.fetchRoutFailure(e));
+    } catch (error) {
+        yield put(privateActions.fetchRoutFailure({error: error.message}));
     }
 }

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import {Grid, Paper} from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import PaymentForm from './payment-form';
-import CardSavedSuccess from "./card-saved-success";
+import PaymentForm from './paymentForm';
+import CardSavedSuccess from "./cardSavedSuccess";
 import backImage from "../../assets/img/login-background.jpg";
-import MainPage from "../../components/main-page-wrapper";
+import MainPage from "../../components/mainPageWrapper";
 
 const styles = () => ({
     root: {
@@ -17,9 +17,8 @@ const styles = () => ({
 });
 
 
-const Profile = ({classes, flagCardSavedSuccessMsgInit = false}) => {
+export const Profile = ({classes, flagCardSavedSuccessMsgInit = false}) => {
     const [flagCardSavedSuccessMsg, setFlagCardSavedSuccessMsg] = useState(flagCardSavedSuccessMsgInit);
-
     return (
         <MainPage>
             <Paper className={classes.root} data-testid="profile">

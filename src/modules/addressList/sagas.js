@@ -1,7 +1,7 @@
 import {takeLatest, put, call, fork} from "redux-saga/effects";
 
-import * as publicActions from './actions-public';
-import * as privateActions from './actions-private';
+import * as publicActions from './actionsPublic';
+import * as privateActions from './actionsPrivate';
 import * as api from './api'
 import {signIn} from "../auth/sagas";
 

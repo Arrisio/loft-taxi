@@ -1,11 +1,11 @@
 import {takeLatest, put, call, fork, spawn} from "redux-saga/effects";
 
-import * as publicActions from './actions-public';
-import * as privateActions from './actions-private';
+import * as publicActions from './actionsPublic';
+import * as privateActions from './actionsPrivate';
 import * as api from './api'
 
 import {fetchCard} from '../card/sagas';
-import {fetchAddressList} from '../address-list/sagas';
+import {fetchAddressList} from '../addressList/sagas';
 
 export default function* watcher() {
     yield takeLatest(publicActions.signIn, signIn);
@@ -26,7 +26,7 @@ export function* signIn(action) {
         yield fork(fetchCard, {payload: {token: res.token}})
         yield fork(fetchAddressList)
     } catch (error) {
-        yield put(privateActions.signInFaliure(error.message));
+        yield put(privateActions.signInFaliure({error: error.message}));
     }
 }
 
@@ -35,6 +35,7 @@ export function* signUp(action) {
     try {
         yield put(privateActions.signUpRequest());
         const res = yield call(api.signUp, action.payload);
+        console.log(action)
         if (!res.success) throw new Error(res.error);
         yield put(privateActions.signUpSuccess({...action.payload, ...res}));
         yield spawn(fetchCard, {payload: {token: res.token}})
